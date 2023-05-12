@@ -1,0 +1,77 @@
+[gd_scene load_steps=5 format=3 uid="uid://dixjlui6rugkt"]
+
+[ext_resource type="Script" path="res://screen.gd" id="1_ohqhd"]
+[ext_resource type="Texture2D" uid="uid://dbcrwkj8v3rka" path="res://icon.svg" id="2_p4ius"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wd8dc"]
+texture = ExtResource("2_p4ius")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+
+[sub_resource type="TileSet" id="TileSet_ep752"]
+tile_size = Vector2i(128, 128)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_wd8dc")
+
+[node name="Screen" type="Node2D"]
+script = ExtResource("1_ohqhd")
+
+[node name="Network" type="Node" parent="."]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://scenes/player.tscn")
+spawn_path = NodePath("../Network")
+
+[node name="MasterPopup" type="Window" parent="."]
+initial_position = 1
+title = "Master"
+size = Vector2i(640, 480)
+visible = false
+borderless = true
+
+[node name="CenterContainer" type="CenterContainer" parent="MasterPopup"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 636.0
+offset_bottom = 476.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MasterPopup/CenterContainer"]
+layout_mode = 2
+
+[node name="Host" type="LineEdit" parent="MasterPopup/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+placeholder_text = "Host"
+
+[node name="JoinServer" type="Button" parent="MasterPopup/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Join Server"
+
+[node name="HSeparator" type="HSeparator" parent="MasterPopup/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CreateServer" type="Button" parent="MasterPopup/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Create Server"
+
+[node name="Spawns" type="Node" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="Spawns"]
+position = Vector2(258, 266)
+
+[node name="Marker2D2" type="Marker2D" parent="Spawns"]
+position = Vector2(1001, 113)
+
+[node name="Marker2D3" type="Marker2D" parent="Spawns"]
+position = Vector2(607, 317)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_ep752")
+format = 2
+layer_0/tile_data = PackedInt32Array(262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0, 262152, 0, 0, 196608, 0, 0, 196616, 0, 0, 262143, 0, 0, 196617, 0, 0)
+
+[connection signal="pressed" from="MasterPopup/CenterContainer/VBoxContainer/JoinServer" to="." method="_on_connect_pressed"]
+[connection signal="pressed" from="MasterPopup/CenterContainer/VBoxContainer/CreateServer" to="." method="_on_host_pressed"]
