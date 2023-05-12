@@ -48,5 +48,5 @@ func _on_connect_pressed():
 func add_player(peer_id):
 	var player = preload("res://scenes/player.tscn").instantiate()
 	player.name = str(peer_id)
-	player.position = $Spawns.get_children().pick_random().position
+	player.global_position = $Spawns.get_children().pick_random().global_position
 	$Network.add_child(player)

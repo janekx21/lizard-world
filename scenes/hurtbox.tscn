@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://blml6fbh57pgb"]
+
+[ext_resource type="Texture2D" uid="uid://dbcrwkj8v3rka" path="res://icon.svg" id="1_1xvgk"]
+[ext_resource type="Script" path="res://scenes/hurtbox.gd" id="1_ti7nb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qnb5v"]
+size = Vector2(95, 76)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_d7s2n"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+
+[node name="Hurtbox" type="Area2D"]
+script = ExtResource("1_ti7nb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_qnb5v")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(0.5, 1)
+scale = Vector2(0.710937, 0.625)
+texture = ExtResource("1_1xvgk")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+autostart = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_d7s2n")
+
+[connection signal="timeout" from="Timer" to="." method="remove"]

@@ -1,25 +1,50 @@
-[gd_scene load_steps=5 format=3 uid="uid://5ivpbo3iy32x"]
+[gd_scene load_steps=7 format=3 uid="uid://5ivpbo3iy32x"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_mfejh"]
 [ext_resource type="Texture2D" uid="uid://dbcrwkj8v3rka" path="res://icon.svg" id="1_v3w73"]
+[ext_resource type="Texture2D" uid="uid://xb55bxdmc51w" path="res://textures/tractor.png" id="2_jwswa"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_53gs1"]
 radius = 63.0
 height = 126.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_raog1"]
+radius = 62.0081
+
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7y5kg"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/sync = true
+properties/1/path = NodePath("Sprite2D:flip_h")
+properties/1/spawn = true
+properties/1/sync = true
+properties/2/path = NodePath("Shape:scale")
+properties/2/spawn = true
+properties/2/sync = true
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_mfejh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_v3w73")
+scale = Vector2(6.88889, 6.88889)
+texture = ExtResource("2_jwswa")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_53gs1")
+
+[node name="Hitbox" type="Area2D" parent="Shape"]
+position = Vector2(0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shape/Hitbox"]
+shape = SubResource("CircleShape2D_raog1")
+
+[node name="HurtboxPoint" type="Marker2D" parent="Shape"]
+position = Vector2(110, 0)
+
+[node name="Icon" type="Sprite2D" parent="Shape/HurtboxPoint"]
+position = Vector2(2.00002, -4)
+scale = Vector2(0.320312, 0.320312)
+texture = ExtResource("1_v3w73")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_7y5kg")
