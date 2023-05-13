@@ -44,3 +44,14 @@ jobs:
     
     - name: Deploy with rsync
       run: rsync -avz -e 'ssh -p 2222' ${{ steps.export.outputs.build_directory }}/Server/lizard-world-server.x86_64 lizard@server.ch-l.de:/opt/
+      
+    - name: executing remote ssh commands using ssh key
+      uses: appleboy/ssh-action@v0.1.10
+      with:
+        host: server.ch-l.de
+        username: lizard
+        key: ${{ secrets.SSH_KEY_GLOBAL }}
+        port: 2222
+        script: |
+              screen -XS lizard-world quit
+              screen -S lizard-world -X /opt/lizard-world-server.x86_64
