@@ -39,7 +39,7 @@ jobs:
       run: ssh-keyscan -p 2222 -H server.ch-l.de >> ~/.ssh/known_hosts
     
     - name: Deploy with rsync
-      run: rsync -avz -e 'ssh -p 2222' ${{ steps.export.outputs.build_directory }}/Server/lizard-world-server.x86_64 lizard@server.ch-l.de:/opt/
+      run: rsync -avz -e 'ssh -p 2222' ${{ steps.export.outputs.build_directory }}/Server/* lizard@server.ch-l.de:/opt/
       
     - name: executing remote ssh commands using ssh key
       uses: appleboy/ssh-action@v0.1.10
