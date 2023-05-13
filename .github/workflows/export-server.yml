@@ -1,8 +1,4 @@
-on: 
-  push:
-    branches: 
-    - master
-  workflow_dispatch:
+on:  [push, workflow_dispatch]
 
 jobs:
   # job id, can be anything
@@ -54,4 +50,4 @@ jobs:
         port: 2222
         script: |
               screen -XS lizard-world quit
-              screen -S lizard-world -X /opt/lizard-world-server.x86_64
+              screen -S lizard-world -d -m /opt/lizard-world-server.x86_64
