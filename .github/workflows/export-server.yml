@@ -37,7 +37,7 @@ jobs:
         known_hosts: 'just-a-placeholder-so-we-dont-get-errors'
 
     - name: Adding Known Hosts
-      run: ssh-keyscan --p 2222 -H server.ch-l.de >> ~/.ssh/known_hosts
+      run: ssh-keyscan -p 2222 -H server.ch-l.de >> ~/.ssh/known_hosts
     
     - name: Deploy with rsync
       run: rsync -avz -e 'ssh -p 2222' ${{ steps.export.outputs.build_directory }}/lizard-world-server.x86_64 lizard@server.ch-l.de:/opt/
