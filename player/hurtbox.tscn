@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dbcrwkj8v3rka" path="res://icon.svg" id="2_661mk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qnb5v"]
-size = Vector2(40, 80)
+size = Vector2(165, 158)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_d7s2n"]
 properties/0/path = NodePath(".:position")
@@ -25,12 +25,11 @@ position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_qnb5v")
 
 [node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(3.8147e-06, 0.5)
-scale = Vector2(0.328125, 0.617188)
+scale = Vector2(1.28125, 1.21875)
 texture = ExtResource("2_661mk")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.1
 one_shot = true
 autostart = true
 

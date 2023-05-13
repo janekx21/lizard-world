@@ -52,8 +52,10 @@ func start_client():
 func add_player(peer_id):
 	var player = preload("res://player/player.tscn").instantiate()
 	player.name = str(peer_id)
-	player.global_position = $Spawns.get_children().pick_random().global_position
 	$Network.add_child(player)
 
 func remove_player(peer_id):
 	$Network.remove_child($Network.get_node(str(peer_id)))
+
+func get_random_spawn():
+	return $Spawns.get_children().pick_random().global_position

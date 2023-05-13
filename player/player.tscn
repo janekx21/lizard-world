@@ -1,12 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bf8ui25uknntv"]
+[gd_scene load_steps=7 format=3 uid="uid://bf8ui25uknntv"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_w4ivo"]
 [ext_resource type="Texture2D" uid="uid://xb55bxdmc51w" path="res://textures/tractor.png" id="2_e5i5t"]
-[ext_resource type="Script" path="res://player/Hitbox.gd" id="3_meryt"]
 [ext_resource type="Texture2D" uid="uid://dbcrwkj8v3rka" path="res://icon.svg" id="4_pxlay"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_53gs1"]
-radius = 63.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cyigu"]
+radius = 42.0
 height = 126.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_raog1"]
@@ -25,6 +24,9 @@ properties/2/sync = true
 properties/3/path = NodePath(".:team")
 properties/3/spawn = true
 properties/3/sync = true
+properties/4/path = NodePath(".:hp")
+properties/4/spawn = true
+properties/4/sync = true
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_w4ivo")
@@ -34,18 +36,16 @@ scale = Vector2(6.88889, 6.88889)
 texture = ExtResource("2_e5i5t")
 
 [node name="Shape" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_53gs1")
+shape = SubResource("CapsuleShape2D_cyigu")
 
-[node name="Hitbox" type="Area2D" parent="Shape" node_paths=PackedStringArray("player")]
+[node name="Hitbox" type="Area2D" parent="Shape"]
 position = Vector2(0, 1)
-script = ExtResource("3_meryt")
-player = NodePath("../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shape/Hitbox"]
 shape = SubResource("CircleShape2D_raog1")
 
 [node name="HurtboxPoint" type="Marker2D" parent="Shape"]
-position = Vector2(110, 0)
+position = Vector2(127, 0)
 
 [node name="Icon" type="Sprite2D" parent="Shape/HurtboxPoint"]
 position = Vector2(2.00002, -4)
@@ -54,3 +54,9 @@ texture = ExtResource("4_pxlay")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_7y5kg")
+
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="area_entered" from="Shape/Hitbox" to="." method="hitbox_entered"]

@@ -8,5 +8,5 @@ func remove():
 	if is_multiplayer_authority():
 		queue_free()
 
-func get_player()-> Player:
+func get_player() -> Player:
 	return $"/root/Game/Network".get_node(str(origin_peer_id)) as Player
