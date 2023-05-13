@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://cek8w7qlonou0"]
+
+[ext_resource type="Texture2D" uid="uid://coxa5fh5vwl3a" path="res://textures/environment/black_smoke/blackSmoke00.png" id="1_3iufc"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_q4xh6"]
+resource_name = "smoke_material"
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_ll1a2"]
+_data = [Vector2(0, 0.181818), 0.0, 0.0, 0, 0, Vector2(1, 0.527273), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_dqx7a"]
+max_value = 200.0
+_data = [Vector2(0.010989, 200), 0.0, 0.0, 0, 0, Vector2(1, 3.63637), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="smoke" type="Sprite2D"]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_q4xh6")
+position = Vector2(502, 475)
+amount = 19
+lifetime = 4.0
+speed_scale = 0.3
+randomness = 0.53
+lifetime_randomness = 0.52
+texture = ExtResource("1_3iufc")
+direction = Vector2(5, 5)
+spread = 180.0
+gravity = Vector2(0, -100)
+angle_min = 290.9
+angle_max = 363.6
+scale_amount_curve = SubResource("Curve_ll1a2")
+anim_speed_min = 1.0
+anim_speed_max = 5.0
+anim_speed_curve = SubResource("Curve_dqx7a")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
