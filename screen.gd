@@ -4,7 +4,7 @@ const PORT = 4433
 
 func _ready():
 	# Start paused.
-	#get_tree().paused = true
+	get_tree().paused = true
 
 	# Automatically start the server in headless mode.
 	if DisplayServer.get_name() == "headless":

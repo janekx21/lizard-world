@@ -26,6 +26,7 @@ _spawnable_scenes = PackedStringArray("res://scenes/player.tscn", "res://scenes/
 spawn_path = NodePath("../Network")
 
 [node name="MasterPopup" type="Window" parent="."]
+process_mode = 3
 initial_position = 1
 title = "Master"
 size = Vector2i(640, 480)
@@ -44,6 +45,7 @@ layout_mode = 2
 [node name="Host" type="LineEdit" parent="MasterPopup/CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+text = "localhost"
 placeholder_text = "Host"
 
 [node name="JoinServer" type="Button" parent="MasterPopup/CenterContainer/VBoxContainer"]
