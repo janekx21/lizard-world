@@ -10,6 +10,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var max_hp = 3
 @export var hp: int
+@onready var sprite = $Shape/SpriteMod/Sprite2D
 
 func get_id():
 	return str(name).to_int()
@@ -22,11 +23,15 @@ func _ready():
 	if is_multiplayer_authority():
 		spawn()
 
-func _process(_delta):
-	$Shape/Sprite2D.modulate = team.lightened(.5)
+func _process(delta):
+	sprite.modulate = team.lightened(.5)
 	for child in $Health.get_children():
 		if child is Sprite2D && child.name.is_valid_int():
 			child.visible = child.name.to_int() <= hp
+	
+	var vel = abs(velocity/SPEED).clamp(-Vector2.ONE, Vector2.ONE)
+	vel = (Vector2.ONE + vel * 0.2).normalized() * 1.41
+	$Shape/SpriteMod.scale = $Shape/SpriteMod.scale.move_toward(vel, delta)
 
 func spawn():
 	hp = 3
@@ -52,6 +57,7 @@ func _physics_process(delta):
 		if $AttackCooldown.is_stopped():
 			attack.rpc_id(1, $Shape/HurtboxPoint.global_position, multiplayer.get_unique_id())
 			$AttackCooldown.start(0.2)
+			$AnimationPlayer.play("attack")
 	
 	if dir:
 		$Shape.scale = Vector2.RIGHT * (1 if dir > 0 else -1) + Vector2.DOWN
