@@ -40,4 +40,4 @@ jobs:
       run: ssh-keyscan -H server.ch-l.de --p 2222 >> ~/.ssh/known_hosts
     
     - name: Deploy with rsync
-      run: rsync -avz ${{ steps.export.outputs.build_directory }}/lizard-world-server.x86_64 $lizard@$[server.ch-l.de]:2222:/opt/
+      run: rsync -avz -e 'ssh -p 2222' ${{ steps.export.outputs.build_directory }}/lizard-world-server.x86_64 lizard@server.ch-l.de:/opt/
