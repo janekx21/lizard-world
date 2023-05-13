@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://5ivpbo3iy32x"]
+[gd_scene load_steps=8 format=3 uid="uid://bf8ui25uknntv"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_mfejh"]
-[ext_resource type="Texture2D" uid="uid://dbcrwkj8v3rka" path="res://icon.svg" id="1_v3w73"]
-[ext_resource type="Texture2D" uid="uid://xb55bxdmc51w" path="res://textures/tractor.png" id="2_jwswa"]
-[ext_resource type="Script" path="res://scenes/Hitbox.gd" id="3_crkm5"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_w4ivo"]
+[ext_resource type="Texture2D" uid="uid://xb55bxdmc51w" path="res://textures/tractor.png" id="2_e5i5t"]
+[ext_resource type="Script" path="res://player/Hitbox.gd" id="3_meryt"]
+[ext_resource type="Texture2D" uid="uid://dbcrwkj8v3rka" path="res://icon.svg" id="4_pxlay"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_53gs1"]
 radius = 63.0
@@ -27,18 +27,18 @@ properties/3/spawn = true
 properties/3/sync = true
 
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_mfejh")
+script = ExtResource("1_w4ivo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(6.88889, 6.88889)
-texture = ExtResource("2_jwswa")
+texture = ExtResource("2_e5i5t")
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_53gs1")
 
 [node name="Hitbox" type="Area2D" parent="Shape" node_paths=PackedStringArray("player")]
 position = Vector2(0, 1)
-script = ExtResource("3_crkm5")
+script = ExtResource("3_meryt")
 player = NodePath("../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shape/Hitbox"]
@@ -50,7 +50,7 @@ position = Vector2(110, 0)
 [node name="Icon" type="Sprite2D" parent="Shape/HurtboxPoint"]
 position = Vector2(2.00002, -4)
 scale = Vector2(0.320312, 0.320312)
-texture = ExtResource("1_v3w73")
+texture = ExtResource("4_pxlay")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_7y5kg")

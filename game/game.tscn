@@ -1,10 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dixjlui6rugkt"]
+[gd_scene load_steps=5 format=3 uid="uid://c5iknbtcn5etf"]
 
-[ext_resource type="Script" path="res://screen.gd" id="1_ohqhd"]
-[ext_resource type="Texture2D" uid="uid://dbcrwkj8v3rka" path="res://icon.svg" id="2_p4ius"]
+[ext_resource type="Script" path="res://game/game.gd" id="1_7bnle"]
+[ext_resource type="Texture2D" uid="uid://dbcrwkj8v3rka" path="res://icon.svg" id="2_qexsu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wd8dc"]
-texture = ExtResource("2_p4ius")
+texture = ExtResource("2_qexsu")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -16,13 +16,13 @@ tile_size = Vector2i(128, 128)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_wd8dc")
 
-[node name="Screen" type="Node2D"]
-script = ExtResource("1_ohqhd")
+[node name="Game" type="Node2D"]
+script = ExtResource("1_7bnle")
 
 [node name="Network" type="Node" parent="."]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://scenes/player.tscn", "res://scenes/hurtbox.tscn")
+_spawnable_scenes = PackedStringArray("res://player/player.tscn", "res://player/hurtbox.tscn")
 spawn_path = NodePath("../Network")
 
 [node name="MasterPopup" type="Window" parent="."]

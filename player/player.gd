@@ -17,7 +17,7 @@ func _enter_tree():
 	print("spawned with id ", get_id(), " my id ", multiplayer.get_unique_id())
 	set_multiplayer_authority(get_id())
 
-func _process(delta):
+func _process(_delta):
 	$Sprite2D.modulate = team
 
 func _physics_process(delta):
@@ -46,13 +46,13 @@ func _physics_process(delta):
 
 @rpc("call_local")
 func attack(at: Vector2, from_peer_id: int):
-	var hurtbox = preload("res://scenes/hurtbox.tscn").instantiate()
+	var hurtbox = preload("res://player/hurtbox.tscn").instantiate()
 	hurtbox.global_position = at
 	hurtbox.origin_peer_id = from_peer_id
-	hurtbox.damage = 123
+	hurtbox.damage = 1
 	find_parent("Network").add_child(hurtbox, true)
 
 func get_damage(damage: int):
-	hp -= 1
+	hp -= damage
 	if hp <= 0:
 		queue_free()

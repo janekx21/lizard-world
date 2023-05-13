@@ -3,20 +3,23 @@ extends Node
 const PORT = 4433
 
 func _ready():
-	# Start paused.
-	get_tree().paused = true
-
 	# Automatically start the server in headless mode.
 	if DisplayServer.get_name() == "headless":
 		print("Automatically starting dedicated server.")
-		_on_host_pressed.call_deferred()
-	await get_tree().create_timer(.1).timeout
-	$MasterPopup.popup_centered()
-
+		start_server()
+	else:
+		# Start paused.
+		get_tree().paused = true
+		await get_tree().process_frame
+		$MasterPopup.popup_centered()
 
 func _on_host_pressed():
-	print("on host")
-	# Start as server.
+	start_server()
+	$MasterPopup.hide()
+	get_tree().paused = false
+	add_player(multiplayer.get_unique_id())
+
+func start_server():
 	var peer = ENetMultiplayerPeer.new()
 	peer.create_server(PORT)
 	if peer.get_connection_status() == MultiplayerPeer.CONNECTION_DISCONNECTED:
@@ -24,13 +27,17 @@ func _on_host_pressed():
 		return
 	multiplayer.multiplayer_peer = peer
 	peer.peer_connected.connect(add_player)
-	$MasterPopup.hide()
-	get_tree().paused = false
-	add_player(multiplayer.get_unique_id())
+	peer.peer_disconnected.connect(remove_player)
 
 func _on_connect_pressed():
-	print("on connect")
-	# Start as client.
+	start_client()
+	await multiplayer.multiplayer_peer.peer_connected
+	$MasterPopup.hide()
+	get_tree().paused = false
+	await multiplayer.multiplayer_peer.peer_disconnected
+	get_tree().reload_current_scene()
+
+func start_client():
 	var txt: String = $MasterPopup/CenterContainer/VBoxContainer/Host.text
 	if txt == "":
 		OS.alert("Need a remote to connect to.")
@@ -41,12 +48,12 @@ func _on_connect_pressed():
 		OS.alert("Failed to start multiplayer client.")
 		return
 	multiplayer.multiplayer_peer = peer
-	await peer.peer_connected
-	$MasterPopup.hide()
-	get_tree().paused = false
 
 func add_player(peer_id):
-	var player = preload("res://scenes/player.tscn").instantiate()
+	var player = preload("res://player/player.tscn").instantiate()
 	player.name = str(peer_id)
 	player.global_position = $Spawns.get_children().pick_random().global_position
 	$Network.add_child(player)
+
+func remove_player(peer_id):
+	$Network.remove_child($Network.get_node(str(peer_id)))
