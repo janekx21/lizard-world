@@ -160,7 +160,7 @@ position = Vector2(571, 198)
 scale = Vector2(0.461574, 0.461574)
 sprite_frames = SubResource("SpriteFrames_mbfh5")
 autoplay = "default"
-frame_progress = 0.616144
+frame_progress = 0.370829
 
 [node name="Clouds2" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.3, 0.3)

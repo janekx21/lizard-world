@@ -6,7 +6,8 @@ func _ready():
 	# Automatically start the server in headless mode.
 	if DisplayServer.get_name() == "headless":
 		print("Automatically starting dedicated server.")
-		start_server()
+		#start_server()
+		_on_host_pressed.call_deferred()
 	else:
 		# Start paused.
 		get_tree().paused = true
