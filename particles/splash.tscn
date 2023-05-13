@@ -1,0 +1,103 @@
+[gd_scene load_steps=7 format=3 uid="uid://s3ijyb0o00sa"]
+
+[ext_resource type="Texture2D" uid="uid://df415hja54ysi" path="res://textures/splashes/splat19.png" id="1_24g7j"]
+[ext_resource type="Texture2D" uid="uid://cngkctkwqlu5e" path="res://textures/splashes/splat03.png" id="2_mg5r2"]
+
+[sub_resource type="Curve" id="Curve_qhts1"]
+_data = [Vector2(0, 0), 0.0, 12.6159, 0, 0, Vector2(0.227612, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_ap53r"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Animation" id="Animation_1rrqj"]
+resource_name = "fade"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 7.4, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(10),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CPUParticles2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"restart"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nkeuh"]
+_data = {
+"fade": SubResource("Animation_1rrqj")
+}
+
+[node name="Splash" type="Sprite2D"]
+modulate = Color(0.533333, 0.117647, 0.145098, 1)
+z_index = -1
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("1_24g7j")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+one_shot = true
+speed_scale = 1.5
+explosiveness = 0.73
+randomness = 0.54
+lifetime_randomness = 0.54
+texture = ExtResource("2_mg5r2")
+emission_shape = 1
+emission_sphere_radius = 100.0
+direction = Vector2(0, 0)
+spread = 180.0
+initial_velocity_min = 295.74
+initial_velocity_max = 756.74
+angular_velocity_min = -50.0
+angular_velocity_max = 50.0
+scale_amount_curve = SubResource("Curve_qhts1")
+color_ramp = SubResource("Gradient_ap53r")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "fade"
+libraries = {
+"": SubResource("AnimationLibrary_nkeuh")
+}

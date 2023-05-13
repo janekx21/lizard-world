@@ -23,7 +23,10 @@ func _ready():
 		spawn()
 
 func _process(_delta):
-	$Sprite2D.modulate = team
+	$Shape/Sprite2D.modulate = team.lightened(.5)
+	for child in $Health.get_children():
+		if child is Sprite2D && child.name.is_valid_int():
+			child.visible = child.name.to_int() <= hp
 
 func spawn():
 	hp = 3
@@ -42,7 +45,8 @@ func _physics_process(delta):
 	
 	var dir = Input.get_axis("move_left","move_right")
 	var accell_mod = 1.0 if is_on_floor() else 0.5 # air accelerate
-	velocity.x = move_toward(velocity.x, dir * SPEED, ACCELL * delta * accell_mod)
+	var speed_mod = 1.0 if $AttackCooldown.is_stopped() else 0.5
+	velocity.x = move_toward(velocity.x, dir * SPEED * speed_mod, ACCELL * delta * accell_mod)
 	
 	if Input.is_action_just_pressed("attack"):
 		if $AttackCooldown.is_stopped():
@@ -50,8 +54,9 @@ func _physics_process(delta):
 			$AttackCooldown.start(0.2)
 	
 	if dir:
-		$Sprite2D.flip_h = dir < 0
 		$Shape.scale = Vector2.RIGHT * (1 if dir > 0 else -1) + Vector2.DOWN
+		if not $AnimationPlayer.is_playing() and is_on_floor():
+			$AnimationPlayer.play("hover")
 	
 	move_and_slide()
 
@@ -65,15 +70,14 @@ func attack(at: Vector2, from_peer_id: int):
 
 func hitbox_entered(area: Area2D):
 	if not is_multiplayer_authority(): return
-	if area is Hurtbox:
-		var other = area.get_player()
-		if other:
-			if other.team != team:
-				get_damage(area.damage)
-		else:
-			get_damage(area.damage)
+	if not $InvisibilityTimer.is_stopped(): return
+	if not area is Hurtbox: return
+	var other = area.get_player()
+	if other && other.team == team: return
+	get_damage(area.damage)
 
 func get_damage(damage: int):
+	damage_effect.rpc()
 	hp -= damage
 	if hp <= 0:
 		spawn()
@@ -82,6 +86,13 @@ func get_damage(damage: int):
 				child.swap_team.rpc()
 
 @rpc("any_peer", "call_local")
+func damage_effect():
+	var splash = preload("res://particles/splash.tscn").instantiate()
+	splash.global_position = global_position
+	get_tree().root.add_child(splash)
+
+@rpc("any_peer", "call_local")
 func swap_team():
 	if is_multiplayer_authority():
 		team = [Color.RED, Color.BLUE].pick_random()
+
