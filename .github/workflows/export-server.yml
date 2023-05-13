@@ -35,6 +35,7 @@ jobs:
       with:
         key: ${{ secrets.SSH_KEY_GLOBAL }}
         known_hosts: unnecessary
+        if_key_exists: replace
 
     - name: Adding Known Hosts
       run: ssh-keyscan -p 2222 -H server.ch-l.de >> ~/.ssh/known_hosts
