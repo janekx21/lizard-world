@@ -19,16 +19,16 @@ jobs:
     - name: checkout
       uses: actions/checkout@v3.3.0
   
-#    - name: export game
-#      id: export
-#      # Use latest version (see releases for all versions)
-#      uses: firebelley/godot-export@v5.1.0
-#      with:
-#        # Defining all the required inputs
-#        godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/4.0/Godot_v4.0-stable_linux.x86_64.zip
-#        godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/4.0/Godot_v4.0-stable_export_templates.tpz
-#        relative_project_path: ./
-#        archive_output: false
+    - name: export game
+      id: export
+      # Use latest version (see releases for all versions)
+      uses: firebelley/godot-export@v5.1.0
+      with:
+        # Defining all the required inputs
+        godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/4.0/Godot_v4.0-stable_linux.x86_64.zip
+        godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/4.0/Godot_v4.0-stable_export_templates.tpz
+        relative_project_path: ./
+        archive_output: false
     
     - name: Install SSH Key
       uses: shimataro/ssh-key-action@v2
