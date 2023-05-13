@@ -1,12 +1,11 @@
-# Whenever a tag push matching pattern "v*" then run the job
 on: 
   push:
     branches: 
-    - main
+    - master
 
 jobs:
   # job id, can be anything
-  export_server:
+  export_game:
     # Always use ubuntu-latest for this action
     runs-on: ubuntu-latest
     # Add permission for release creation. Can be made narrower according to your needs
