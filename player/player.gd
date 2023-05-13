@@ -12,6 +12,8 @@ var max_hp = 3
 @export var hp: int
 @onready var sprite = $Shape/SpriteMod/Sprite2D
 
+var last_on_ground = false
+
 func get_id():
 	return str(name).to_int()
 
@@ -32,12 +34,18 @@ func _process(delta):
 	var vel = abs(velocity/SPEED).clamp(-Vector2.ONE, Vector2.ONE)
 	vel = (Vector2.ONE + vel * 0.2).normalized() * 1.41
 	$Shape/SpriteMod.scale = $Shape/SpriteMod.scale.move_toward(vel, delta)
+	
+	$Shape/WalkParticles.emitting = is_on_floor() and abs(velocity.x) > 10
 
 func spawn():
 	hp = 3
 	global_position = get_tree().root.get_node("Game").get_random_spawn()
 
 func _physics_process(delta):
+	if not last_on_ground and is_on_floor():
+		$Shape/LandParticles.restart()
+	last_on_ground = is_on_floor()
+	
 	if not is_multiplayer_authority(): return
 	var jumping = Input.is_action_pressed("jump")
 	if is_on_floor():

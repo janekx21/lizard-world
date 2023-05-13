@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bf8ui25uknntv"]
+[gd_scene load_steps=16 format=3 uid="uid://bf8ui25uknntv"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_w4ivo"]
 [ext_resource type="SpriteFrames" uid="uid://bs28dcxiogu0o" path="res://player/player.tres" id="4_4owvf"]
 [ext_resource type="Texture2D" uid="uid://dbcrwkj8v3rka" path="res://icon.svg" id="4_pxlay"]
+[ext_resource type="Texture2D" uid="uid://dvrktfs18uv7u" path="res://textures/splashes/splat13.png" id="4_qsx8m"]
+[ext_resource type="Texture2D" uid="uid://bkca6v2tdxlxp" path="res://textures/splashes/splat08.png" id="5_jur31"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cyigu"]
 radius = 42.0
@@ -10,6 +12,22 @@ height = 162.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_raog1"]
 radius = 62.0081
+
+[sub_resource type="Curve" id="Curve_p18bl"]
+_data = [Vector2(0, 0.490683), 0.0, 1.76592, 0, 0, Vector2(0.595149, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.722, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_f6yn4"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.807843, 0.807843, 0.807843, 1)
+
+[sub_resource type="Curve" id="Curve_7chod"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.501866, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.00749, 0.0, 1, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_43unt"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.807843, 0.807843, 0.807843, 1)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7y5kg"]
 properties/0/path = NodePath(".:position")
@@ -27,6 +45,12 @@ properties/3/sync = true
 properties/4/path = NodePath("AnimationPlayer:current_animation")
 properties/4/spawn = true
 properties/4/sync = true
+properties/5/path = NodePath("Shape/WalkParticles:emitting")
+properties/5/spawn = true
+properties/5/sync = true
+properties/6/path = NodePath("Shape/LandParticles:emitting")
+properties/6/spawn = true
+properties/6/sync = true
 
 [sub_resource type="Animation" id="Animation_0k6gl"]
 resource_name = "hover"
@@ -87,7 +111,7 @@ shape = SubResource("CapsuleShape2D_cyigu")
 [node name="SpriteMod" type="Node2D" parent="Shape"]
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Shape/SpriteMod"]
-position = Vector2(7, 19)
+position = Vector2(7, 20)
 scale = Vector2(0.170087, 0.170087)
 sprite_frames = ExtResource("4_4owvf")
 animation = &"walk"
@@ -107,6 +131,48 @@ position = Vector2(127, 0)
 position = Vector2(2.00002, -4)
 scale = Vector2(0.320312, 0.320312)
 texture = ExtResource("4_pxlay")
+
+[node name="WalkParticles" type="CPUParticles2D" parent="Shape"]
+z_index = -1
+position = Vector2(-16, 80)
+emitting = false
+amount = 6
+lifetime = 0.36
+randomness = 0.26
+lifetime_randomness = 0.63
+texture = ExtResource("4_qsx8m")
+direction = Vector2(-5, 0)
+spread = 7.66
+gravity = Vector2(0, -600)
+initial_velocity_min = 316.6
+initial_velocity_max = 429.93
+damping_min = 100.0
+damping_max = 100.0
+angle_max = 360.0
+scale_amount_min = 0.2
+scale_amount_max = 0.3
+scale_amount_curve = SubResource("Curve_p18bl")
+color_ramp = SubResource("Gradient_f6yn4")
+
+[node name="LandParticles" type="CPUParticles2D" parent="Shape"]
+z_index = -1
+position = Vector2(0, 73)
+emitting = false
+amount = 4
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 0.39
+lifetime_randomness = 0.55
+texture = ExtResource("5_jur31")
+spread = 180.0
+gravity = Vector2(0, -100)
+initial_velocity_min = 400.0
+initial_velocity_max = 400.0
+scale_amount_min = 0.2
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_7chod")
+color_ramp = SubResource("Gradient_43unt")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_7y5kg")
