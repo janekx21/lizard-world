@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c5iknbtcn5etf"]
+[gd_scene load_steps=19 format=3 uid="uid://c5iknbtcn5etf"]
 
 [ext_resource type="Script" path="res://game/game.gd" id="1_7bnle"]
 [ext_resource type="Script" path="res://game/CameraFollow.gd" id="3_3s4u8"]
@@ -14,6 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://cydhelsyji358" path="res://textures/environment/lava2.png" id="13_0xs1f"]
 [ext_resource type="Texture2D" uid="uid://wfvwkbqwnwlo" path="res://textures/environment/lava3.png" id="14_c43d0"]
 [ext_resource type="TileSet" uid="uid://chy5q42h7owuw" path="res://textures/tileset/stone_terrain.tres" id="15_k1h8q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_flpvp"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_d2w1s"]
 
@@ -65,7 +67,6 @@ process_mode = 3
 initial_position = 1
 title = "Master"
 size = Vector2i(640, 480)
-visible = false
 borderless = true
 
 [node name="CenterContainer" type="CenterContainer" parent="MasterPopup"]
@@ -76,6 +77,29 @@ offset_bottom = 476.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MasterPopup/CenterContainer"]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="MasterPopup/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "Lizard World"
+
+[node name="HSeparator2" type="HSeparator" parent="MasterPopup/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+theme_override_styles/separator = SubResource("StyleBoxEmpty_flpvp")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MasterPopup/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Local" type="Button" parent="MasterPopup/CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "local"
+
+[node name="Global" type="Button" parent="MasterPopup/CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "global"
 
 [node name="Host" type="LineEdit" parent="MasterPopup/CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
@@ -160,7 +184,7 @@ position = Vector2(571, 198)
 scale = Vector2(0.461574, 0.461574)
 sprite_frames = SubResource("SpriteFrames_mbfh5")
 autoplay = "default"
-frame_progress = 0.370829
+frame_progress = 0.437651
 
 [node name="Clouds2" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.3, 0.3)
@@ -199,7 +223,9 @@ z_index = 1
 scale = Vector2(0.5, 0.5)
 tile_set = ExtResource("15_k1h8q")
 format = 2
-layer_0/tile_data = PackedInt32Array(-4, 65536, 3, -3, 65536, 3, -5, 65536, 3, -6, 65536, 3, -7, 65536, 3, -8, 0, 3, -2, 65536, 2, -65538, 0, 0, -65537, 65536, 0, -131072, 65536, 0, -131071, 131072, 3, -65534, 0, 3, -65533, 65536, 3, -65532, 65536, 3, -65531, 65536, 3, -65530, 65536, 3, -65536, 131072, 2, -1, 65536, 2, -196599, 0, 3, -196598, 65536, 3, -196597, 131072, 3, -262133, 0, 3, -262132, 131072, 0, -196596, 196608, 1, -131060, 196608, 2, -393215, 131072, 3, -393216, 65536, 3, -327681, 65536, 3, -327682, 0, 3, -196612, 131072, 3, -196613, 65536, 3, -196614, 0, 3, -262141, 0, 3, -262140, 65536, 3, -262139, 131072, 3, -131082, 131072, 3, -131083, 65536, 0, -131084, 65536, 1, -196620, 131072, 0, -196621, 0, 0, -131085, 0, 2, -65547, 131072, 1, -11, 131072, 2, -12, 65536, 2, -65548, 0, 1, -13, 0, 3, -65526, 196608, 3, -65529, 131072, 3)
+layer_0/tile_data = PackedInt32Array(-4, 65536, 0, -3, 65536, 0, -5, 65536, 0, -6, 65536, 3, -7, 65536, 3, -8, 0, 3, -2, 65536, 1, -65538, 0, 0, -65537, 65536, 0, -131072, 65536, 0, -131071, 131072, 3, -65534, 0, 3, -65533, 65536, 3, -65532, 65536, 0, -65531, 65536, 0, -65530, 65536, 3, -65536, 131072, 1, -1, 65536, 1, -196599, 0, 3, -196598, 65536, 3, -196597, 131072, 3, -262133, 0, 3, -262132, 131072, 0, -196596, 196608, 1, -131060, 196608, 2, -393215, 131072, 3, -393216, 65536, 3, -327681, 65536, 3, -327682, 0, 3, -196612, 131072, 3, -196613, 65536, 3, -196614, 0, 3, -262141, 0, 3, -262140, 65536, 3, -262139, 131072, 3, -131082, 131072, 3, -131083, 65536, 0, -131084, 65536, 1, -196620, 131072, 0, -196621, 0, 0, -131085, 0, 2, -65547, 131072, 1, -11, 131072, 2, -12, 65536, 1, -65548, 0, 1, -13, 0, 3, -65526, 196608, 3, -65529, 131072, 3, 65534, 65536, 2, 65533, 65536, 2, 65532, 65536, 2, 65531, 65536, 2, 65535, 65536, 2, 2, 131072, 2, 1, 65536, 2, 0, 65536, 2, 5, 131072, 2, 4, 65536, 2, 65524, 131072, 2)
 
+[connection signal="pressed" from="MasterPopup/CenterContainer/VBoxContainer/HBoxContainer/Local" to="." method="_on_local_pressed"]
+[connection signal="pressed" from="MasterPopup/CenterContainer/VBoxContainer/HBoxContainer/Global" to="." method="_on_global_pressed"]
 [connection signal="pressed" from="MasterPopup/CenterContainer/VBoxContainer/JoinServer" to="." method="_on_connect_pressed"]
 [connection signal="pressed" from="MasterPopup/CenterContainer/VBoxContainer/CreateServer" to="." method="_on_host_pressed"]

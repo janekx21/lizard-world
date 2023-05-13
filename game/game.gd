@@ -60,3 +60,9 @@ func remove_player(peer_id):
 
 func get_random_spawn():
 	return $Spawns.get_children().pick_random().global_position
+
+func _on_local_pressed():
+	$MasterPopup/CenterContainer/VBoxContainer/Host.text = "localhost"
+
+func _on_global_pressed():
+	$MasterPopup/CenterContainer/VBoxContainer/Host.text = "server.ch-l.de"
