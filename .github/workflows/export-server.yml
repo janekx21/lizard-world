@@ -53,3 +53,14 @@ jobs:
         script: |
               screen -XS lizard-world quit
               screen -S lizard-world -d -m /opt/lizard-world-server.x86_64
+    - name: Archive windows artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: windows-client
+        path: ${{ steps.export.outputs.build_directory }}/WindowsClient/lizard-world-client.*
+
+    - name: Archive linux artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: linux-client
+        path: ${{ steps.export.outputs.build_directory }}/LinuxClient/lizard-world-client.*
