@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bf8ui25uknntv"]
+[gd_scene load_steps=10 format=3 uid="uid://bf8ui25uknntv"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_w4ivo"]
 [ext_resource type="SpriteFrames" uid="uid://bs28dcxiogu0o" path="res://player/player.tres" id="4_4owvf"]
@@ -35,17 +35,46 @@ step = 0.05
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position:y")
+tracks/0/path = NodePath("SpriteMod/Sprite2D:position:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(19, -0.25, 0, 0.0489537, -45.5, -22.5, -0.0251297, 1, 0.0249315, -2, 26.5, -0.0500379, -38, 0.05, 1),
-"times": PackedFloat32Array(0, 0.100122, 0.2)
+"points": PackedFloat32Array(20, -0.25, 0, 0.0363216, -27.1391, -11, -0.02, 0, 0.02, 0, 20, -0.0353888, -26.1675, 0.05, 1),
+"times": PackedFloat32Array(0, 0.102128, 0.2)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteMod/Sprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.00022151),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"walk"]
+}
+
+[sub_resource type="Animation" id="Animation_2s83s"]
+resource_name = "attack"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteMod/Sprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"swing", &"walk"]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qcapg"]
 _data = {
+"attack": SubResource("Animation_2s83s"),
 "hover": SubResource("Animation_0k6gl")
 }
 
@@ -55,14 +84,14 @@ script = ExtResource("1_w4ivo")
 [node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_cyigu")
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="Shape"]
-position = Vector2(7, 26.5)
+[node name="SpriteMod" type="Node2D" parent="Shape"]
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Shape/SpriteMod"]
+position = Vector2(7, 19)
 scale = Vector2(0.170087, 0.170087)
 sprite_frames = ExtResource("4_4owvf")
 animation = &"walk"
 autoplay = "walk"
-frame = 1
-frame_progress = 0.215692
 flip_h = true
 
 [node name="Hitbox" type="Area2D" parent="Shape"]
