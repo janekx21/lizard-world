@@ -9,4 +9,5 @@ func remove():
 		queue_free()
 
 func get_player() -> Player:
+	if origin_peer_id == 0: return null
 	return $"/root/Game/Network".get_node(str(origin_peer_id)) as Player

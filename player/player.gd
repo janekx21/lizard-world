@@ -47,7 +47,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("attack"):
 		if $AttackCooldown.is_stopped():
 			attack.rpc_id(1, $Shape/HurtboxPoint.global_position, multiplayer.get_unique_id())
-			$AttackCooldown.start(0.5)
+			$AttackCooldown.start(0.2)
 	
 	if dir:
 		$Sprite2D.flip_h = dir < 0
@@ -67,10 +67,21 @@ func hitbox_entered(area: Area2D):
 	if not is_multiplayer_authority(): return
 	if area is Hurtbox:
 		var other = area.get_player()
-		if other.team != team:
+		if other:
+			if other.team != team:
+				get_damage(area.damage)
+		else:
 			get_damage(area.damage)
 
 func get_damage(damage: int):
 	hp -= damage
 	if hp <= 0:
 		spawn()
+		for child in get_parent().get_children():
+			if child is Player:
+				child.swap_team.rpc()
+
+@rpc("any_peer", "call_local")
+func swap_team():
+	if is_multiplayer_authority():
+		team = [Color.RED, Color.BLUE].pick_random()
