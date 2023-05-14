@@ -1,12 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://bf8ui25uknntv"]
+[gd_scene load_steps=19 format=3 uid="uid://bf8ui25uknntv"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_w4ivo"]
-[ext_resource type="Texture2D" uid="uid://byqkjsds5nl40" path="res://textures/player/ZylinderHut.png" id="3_xw226"]
+[ext_resource type="Texture2D" uid="uid://irjsc25mjnm3" path="res://textures/player/ZylinderHut.png" id="3_xw226"]
 [ext_resource type="SpriteFrames" uid="uid://bs28dcxiogu0o" path="res://player/player.tres" id="4_4owvf"]
 [ext_resource type="Texture2D" uid="uid://dbcrwkj8v3rka" path="res://icon.svg" id="4_pxlay"]
 [ext_resource type="Texture2D" uid="uid://dvrktfs18uv7u" path="res://textures/splashes/splat13.png" id="4_qsx8m"]
 [ext_resource type="Texture2D" uid="uid://bkca6v2tdxlxp" path="res://textures/splashes/splat08.png" id="5_jur31"]
 [ext_resource type="AudioStream" uid="uid://mj4fa2urblvn" path="res://sounds/sword.wav" id="6_vfs1x"]
+[ext_resource type="AudioStream" uid="uid://dtaf61balhvpu" path="res://sounds/bloodSplash.wav" id="8_nytix"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cyigu"]
 radius = 42.0
@@ -233,5 +234,8 @@ libraries = {
 
 [node name="SwordAttack" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_vfs1x")
+
+[node name="BloodSplash" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_nytix")
 
 [connection signal="area_entered" from="Shape/Hitbox" to="." method="hitbox_entered"]
