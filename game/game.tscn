@@ -18,7 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://cknmsmbj53que" path="res://sounds/click_001.ogg" id="15_wlp73"]
 [ext_resource type="Script" path="res://game/ScoreBox.gd" id="16_aysn4"]
 [ext_resource type="AudioStream" uid="uid://c52g0hg1dujwk" path="res://sounds/lavaLoop.ogg" id="16_ky4sk"]
-[ext_resource type="AudioStream" uid="uid://b6dxm0dx63xrl" path="res://sounds/playerJoinLeave.ogg" id="17_y5nm1"]
+[ext_resource type="AudioStream" uid="uid://cfukmreyb165u" path="res://sounds/eingesprochen/hallo.ogg" id="18_ui3ql"]
 [ext_resource type="AudioStream" uid="uid://ct3mjixu4tm7j" path="res://sounds/bg_music.ogg" id="19_8ba5q"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_flpvp"]
@@ -127,6 +127,60 @@ layout_mode = 2
 [node name="CreateServer" type="Button" parent="MasterPopup/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Create Server"
+
+[node name="HSeparator3" type="HSeparator" parent="MasterPopup/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Credits" type="Button" parent="MasterPopup/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Credits"
+
+[node name="Credits Popup" type="Popup" parent="."]
+initial_position = 1
+size = Vector2i(640, 480)
+
+[node name="CenterContainer" type="CenterContainer" parent="Credits Popup"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 636.0
+offset_bottom = 476.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Credits Popup/CenterContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="A Game by" type="Label" parent="Credits Popup/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "A Game by"
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="Credits Popup/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Names" type="Label" parent="Credits Popup/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Janek
+Alex
+Kim
+Sarah
+Christian"
+
+[node name="HSeparator" type="HSeparator" parent="Credits Popup/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Resources" type="Label" parent="Credits Popup/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resources"
+
+[node name="HSeparator3" type="HSeparator" parent="Credits Popup/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Sources" type="Label" parent="Credits Popup/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Close Popup" type="Button" parent="Credits Popup/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Close"
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = 1
@@ -273,7 +327,7 @@ text = "Hello World"
 stream = ExtResource("16_ky4sk")
 
 [node name="PlayerJoinLeave" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("17_y5nm1")
+stream = ExtResource("18_ui3ql")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_8ba5q")
@@ -284,3 +338,5 @@ autoplay = true
 [connection signal="pressed" from="MasterPopup/CenterContainer/VBoxContainer/HBoxContainer/Global" to="." method="_on_global_pressed"]
 [connection signal="pressed" from="MasterPopup/CenterContainer/VBoxContainer/JoinServer" to="." method="_on_connect_pressed"]
 [connection signal="pressed" from="MasterPopup/CenterContainer/VBoxContainer/CreateServer" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="MasterPopup/CenterContainer/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="Credits Popup/CenterContainer/VBoxContainer/Close Popup" to="." method="_on_close_popup_pressed"]

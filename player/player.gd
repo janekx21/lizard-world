@@ -72,6 +72,7 @@ func _physics_process(delta):
 	if not is_multiplayer_authority(): return
 	var jumping = Input.is_action_pressed("jump")
 	if is_on_floor():
+		$Jump.play()
 		if jumping:
 			velocity.y = -JUMP_HEIGHT
 	else:
@@ -126,6 +127,7 @@ func attack(at: Vector2, from_peer_id: int):
 @rpc("call_local")
 func shoot(at: Vector2, from_peer_id: int):
 	var bullet_scene = preload("res://player/bullet.tscn")
+	$Fireball.play()
 	for muzzle in $Shape/Muzzles.get_children():
 		var bullet = bullet_scene.instantiate()
 		find_parent("Network").add_child(bullet, true)
@@ -172,6 +174,8 @@ func damage_effect():
 func swap_team():
 	if is_multiplayer_authority():
 		team = Hat.values().pick_random()
+		$SwapTeam.play()
+		
 
 func hat_to_texture(hat: Hat) -> Texture2D:
 	if hat == Hat.ACAGAMICS:
