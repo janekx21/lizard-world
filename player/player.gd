@@ -5,8 +5,17 @@ const SPEED = 1200
 const ACCELL = 17000
 const JUMP_HEIGHT = 1800
 
+enum Hat {
+	ACAGAMICS,
+	HORNS,
+	WITCHS_HAT,
+	TOP_HAT
+}
+
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-@export var team: Color = [Color.RED, Color.BLUE].pick_random()
+
+@export var color: Color = [Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW, Color.VIOLET, Color.CYAN, Color.ORANGE, Color.OLIVE, Color.DARK_RED, Color.NAVY_BLUE].pick_random()
+@export var team: Hat = Hat.values().pick_random()
 
 var max_hp = 3
 @export var hp: int
@@ -26,7 +35,7 @@ func _ready():
 		spawn()
 
 func _process(delta):
-	sprite.modulate = team.lightened(.5)
+	sprite.modulate = color.lightened(.5)
 	for child in $Health.get_children():
 		if child is Sprite2D && child.name.is_valid_int():
 			child.visible = child.name.to_int() <= hp
@@ -36,6 +45,8 @@ func _process(delta):
 	$Shape/SpriteMod.scale = $Shape/SpriteMod.scale.move_toward(vel, delta)
 	
 	$Shape/WalkParticles.emitting = is_on_floor() and abs(velocity.x) > 10
+	
+	$Shape/SpriteMod/Sprite2D/Hat.texture = hat_to_texture(team)
 
 func spawn():
 	hp = 3
@@ -108,5 +119,16 @@ func damage_effect():
 @rpc("any_peer", "call_local")
 func swap_team():
 	if is_multiplayer_authority():
-		team = [Color.RED, Color.BLUE].pick_random()
+		team = Hat.values().pick_random()
 
+func hat_to_texture(hat: Hat) -> Texture2D:
+	if hat == Hat.ACAGAMICS:
+		return preload("res://textures/player/AcagamicsHut.png")
+	if hat == Hat.HORNS:
+		return preload("res://textures/player/GeweihHut.png")
+	if hat == Hat.TOP_HAT:
+		return preload("res://textures/player/ZylinderHut.png")
+	if hat == Hat.WITCHS_HAT:
+		return preload("res://textures/player/HexenHut.png")
+	printerr("add a condition here")
+	return null
