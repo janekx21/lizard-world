@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://qnv5lftbq51n"]
+[gd_scene load_steps=4 format=3 uid="uid://qnv5lftbq51n"]
 
 [ext_resource type="Script" path="res://player/hurtbox.gd" id="1_u6gpb"]
-[ext_resource type="Texture2D" uid="uid://dbcrwkj8v3rka" path="res://icon.svg" id="2_661mk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qnb5v"]
 size = Vector2(165, 158)
@@ -23,10 +22,6 @@ script = ExtResource("1_u6gpb")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_qnb5v")
-
-[node name="Icon" type="Sprite2D" parent="."]
-scale = Vector2(1.28125, 1.21875)
-texture = ExtResource("2_661mk")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1

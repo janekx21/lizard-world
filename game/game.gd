@@ -6,8 +6,8 @@ func _ready():
 	# Automatically start the server in headless mode.
 	if DisplayServer.get_name() == "headless":
 		print("Automatically starting dedicated server.")
-		#start_server()
-		_on_host_pressed.call_deferred()
+		start_server()
+		#_on_host_pressed.call_deferred()
 	else:
 		# Start paused.
 		get_tree().paused = true
@@ -23,6 +23,7 @@ func _on_host_pressed():
 	add_player(multiplayer.get_unique_id())
 
 func start_server():
+	$LavaLoop.play()
 	var peer = ENetMultiplayerPeer.new()
 	peer.create_server(PORT)
 	if peer.get_connection_status() == MultiplayerPeer.CONNECTION_DISCONNECTED:
@@ -54,11 +55,13 @@ func start_client():
 	multiplayer.multiplayer_peer = peer
 
 func add_player(peer_id):
+	$PlayerJoinLeave.play()
 	var player = preload("res://player/player.tscn").instantiate()
 	player.name = str(peer_id)
 	$Network.add_child(player)
 
 func remove_player(peer_id):
+	$PlayerJoinLeave.play()
 	$Network.remove_child($Network.get_node(str(peer_id)))
 
 func get_random_spawn():
@@ -69,3 +72,10 @@ func _on_local_pressed():
 
 func _on_global_pressed():
 	$MasterPopup/CenterContainer/VBoxContainer/Host.text = "server.ch-l.de"
+
+func _process(delta):
+	var players: Array[Player] = []
+	for c in $Network.get_children():
+		if c is Player:
+			players.push_back(c)
+	$CanvasLayer/UI/ScoreBox.render_score(players)
