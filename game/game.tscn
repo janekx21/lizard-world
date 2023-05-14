@@ -167,19 +167,6 @@ Kim
 Sarah
 Christian"
 
-[node name="HSeparator" type="HSeparator" parent="Credits Popup/CenterContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Resources" type="Label" parent="Credits Popup/CenterContainer/VBoxContainer"]
-layout_mode = 2
-text = "Resources"
-
-[node name="HSeparator3" type="HSeparator" parent="Credits Popup/CenterContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Sources" type="Label" parent="Credits Popup/CenterContainer/VBoxContainer"]
-layout_mode = 2
-
 [node name="Close Popup" type="Button" parent="Credits Popup/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Close"
