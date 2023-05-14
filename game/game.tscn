@@ -1,6 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://c5iknbtcn5etf"]
+[gd_scene load_steps=25 format=3 uid="uid://c5iknbtcn5etf"]
 
 [ext_resource type="Script" path="res://game/game.gd" id="1_7bnle"]
+[ext_resource type="PackedScene" uid="uid://ciu4ggg11cq10" path="res://enemy/enemy.tscn" id="2_bw475"]
 [ext_resource type="Script" path="res://game/CameraFollow.gd" id="3_3s4u8"]
 [ext_resource type="Script" path="res://player/hurtbox.gd" id="4_2irw5"]
 [ext_resource type="Texture2D" uid="uid://dituy55711xqj" path="res://textures/environment/background.png" id="5_jwoyd"]
@@ -63,8 +64,11 @@ script = ExtResource("1_7bnle")
 
 [node name="Network" type="Node" parent="."]
 
+[node name="Enemy" parent="Network" instance=ExtResource("2_bw475")]
+position = Vector2(215, -860)
+
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://player/player.tscn", "res://player/hurtbox.tscn", "res://player/bullet.tscn")
+_spawnable_scenes = PackedStringArray("res://player/player.tscn", "res://player/hurtbox.tscn", "res://player/bullet.tscn", "res://enemy/enemy.tscn")
 spawn_path = NodePath("../Network")
 
 [node name="MasterPopup" type="Window" parent="."]

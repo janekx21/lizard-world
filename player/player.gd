@@ -149,7 +149,7 @@ func get_damage(damage: int, player: Player):
 	hp -= damage
 	if hp <= 0:
 		if player:
-			player.award_kill.rpc_id(player.get_id())
+			player.award_kill.rpc_id(player.get_id(), 5)
 		else:
 			score -= 1
 		spawn()
@@ -158,8 +158,8 @@ func get_damage(damage: int, player: Player):
 				child.swap_team.rpc()
 
 @rpc("any_peer")
-func award_kill():
-	score += 5
+func award_kill(p: int):
+	score += p
 
 @rpc("any_peer", "call_local")
 func damage_effect():

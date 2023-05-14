@@ -1,0 +1,68 @@
+[gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://cht6nr4gn0gy3"]
+
+[ext_resource type="Texture2D" uid="uid://cgp74do03053s" path="res://textures/player/Gegner_angreifen.png" id="1_h0ojl"]
+[ext_resource type="Texture2D" uid="uid://dpejh005veq6x" path="res://textures/player/Gegner_jagd.png" id="1_if0i8"]
+[ext_resource type="Texture2D" uid="uid://dayasflvdwk0k" path="res://textures/player/Gegner_jagd2.png" id="2_7b3um"]
+[ext_resource type="Texture2D" uid="uid://dd1t3buc74srs" path="res://textures/player/Gegner_jagd3.png" id="3_rog0e"]
+[ext_resource type="Texture2D" uid="uid://dj04eureu5rjm" path="res://textures/player/Gegner_spawn.png" id="4_0p0vb"]
+[ext_resource type="Texture2D" uid="uid://b2aqargwljgua" path="res://textures/player/Gegner_tot.png" id="4_3bhg8"]
+[ext_resource type="Texture2D" uid="uid://q8qnfwbo2xky" path="res://textures/player/Gegner_tot2.png" id="5_o8lb2"]
+[ext_resource type="Texture2D" uid="uid://chm1yebv445kj" path="res://textures/player/Gegner_tot3.png" id="6_7vlpa"]
+[ext_resource type="Texture2D" uid="uid://gtpbhbjuj07k" path="res://textures/player/Gegner_tot4.png" id="7_s7038"]
+[ext_resource type="Texture2D" uid="uid://dpiil6cd8wti0" path="res://textures/player/Gegner_tot5.png" id="8_b458i"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_h0ojl")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_if0i8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_7b3um")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_if0i8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rog0e")
+}],
+"loop": true,
+"name": &"chase",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_3bhg8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_o8lb2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_7vlpa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_s7038")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_b458i")
+}],
+"loop": true,
+"name": &"death",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_0p0vb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

@@ -1,0 +1,65 @@
+[gd_scene load_steps=9 format=3 uid="uid://ciu4ggg11cq10"]
+
+[ext_resource type="SpriteFrames" uid="uid://cht6nr4gn0gy3" path="res://enemy/enemy.tres" id="1_peexr"]
+[ext_resource type="Script" path="res://enemy/enemy.gd" id="1_ur3gr"]
+[ext_resource type="AudioStream" uid="uid://dtaf61balhvpu" path="res://sounds/bloodSplash.wav" id="3_wa1x6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eae81"]
+radius = 457.948
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1u4ru"]
+radius = 284.345
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xow3y"]
+radius = 107.056
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pf1ym"]
+radius = 107.056
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_bbunn"]
+properties/0/path = NodePath(".:hp")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath(".:position")
+properties/1/spawn = true
+properties/1/sync = true
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_ur3gr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_peexr")
+autoplay = "default"
+frame_progress = 0.356181
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-85, 90)
+shape = SubResource("CircleShape2D_eae81")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-147, -703)
+shape = SubResource("CircleShape2D_1u4ru")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(418, -161)
+shape = SubResource("CircleShape2D_xow3y")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-681, -55)
+shape = SubResource("CircleShape2D_pf1ym")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_bbunn")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 100.0
+one_shot = true
+autostart = true
+
+[node name="BloodSplash" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_wa1x6")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
