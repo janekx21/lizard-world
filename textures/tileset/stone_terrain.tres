@@ -136,7 +136,8 @@ texture_region_size = Vector2i(256, 256)
 
 [resource]
 tile_size = Vector2i(256, 256)
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 3
+physics_layer_0/collision_mask = 3
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Stone"
 terrain_set_0/terrain_0/color = Color(0.654902, 0.705882, 0.662745, 1)
