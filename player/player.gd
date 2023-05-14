@@ -118,6 +118,7 @@ func attack_effect():
 
 @rpc("call_local")
 func attack(at: Vector2, from_peer_id: int):
+	$Hit.play()
 	var hurtbox = preload("res://player/hurtbox.tscn").instantiate()
 	hurtbox.global_position = at
 	hurtbox.origin_peer_id = from_peer_id
@@ -162,6 +163,7 @@ func get_damage(damage: int, player: Player):
 @rpc("any_peer")
 func award_kill():
 	score += 5
+	$Kill.play()
 
 @rpc("any_peer", "call_local")
 func damage_effect():
