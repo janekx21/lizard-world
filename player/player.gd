@@ -51,6 +51,8 @@ func _process(delta):
 	
 	if fireball_count:
 		$Shape/Breath.emitting = fireball_count > 0
+	else:
+		$Shape/Breath.emitting = false
 
 func spawn():
 	hp = 3
