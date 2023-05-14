@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bf8ui25uknntv"]
+[gd_scene load_steps=18 format=3 uid="uid://bf8ui25uknntv"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_w4ivo"]
 [ext_resource type="Texture2D" uid="uid://byqkjsds5nl40" path="res://textures/player/ZylinderHut.png" id="3_xw226"]
@@ -53,6 +53,9 @@ properties/5/sync = true
 properties/6/path = NodePath("Shape/LandParticles:emitting")
 properties/6/spawn = true
 properties/6/sync = true
+properties/7/path = NodePath(".:color")
+properties/7/spawn = true
+properties/7/sync = true
 
 [sub_resource type="Animation" id="Animation_2s83s"]
 resource_name = "attack"
@@ -121,8 +124,8 @@ autoplay = "walk"
 flip_h = true
 
 [node name="Hat" type="Sprite2D" parent="Shape/SpriteMod/Sprite2D"]
-position = Vector2(11.7587, 17.638)
-scale = Vector2(1.13471, 1.13471)
+position = Vector2(35.2761, 264.57)
+scale = Vector2(1.53823, 1.53823)
 texture = ExtResource("3_xw226")
 
 [node name="Hitbox" type="Area2D" parent="Shape"]
@@ -133,11 +136,6 @@ shape = SubResource("CircleShape2D_raog1")
 
 [node name="HurtboxPoint" type="Marker2D" parent="Shape"]
 position = Vector2(127, 0)
-
-[node name="Icon" type="Sprite2D" parent="Shape/HurtboxPoint"]
-position = Vector2(2.00002, -4)
-scale = Vector2(0.320312, 0.320312)
-texture = ExtResource("4_pxlay")
 
 [node name="WalkParticles" type="CPUParticles2D" parent="Shape"]
 z_index = -1

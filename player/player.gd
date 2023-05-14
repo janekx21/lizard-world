@@ -77,7 +77,7 @@ func _physics_process(delta):
 			attack.rpc_id(1, $Shape/HurtboxPoint.global_position, multiplayer.get_unique_id())
 			$AttackCooldown.start(0.2)
 			$AnimationPlayer.play("attack")
-			$SwordAttack.play()
+			attack_effect.rpc()
 	
 	if dir:
 		$Shape.scale = Vector2.RIGHT * (1 if dir > 0 else -1) + Vector2.DOWN
@@ -85,6 +85,10 @@ func _physics_process(delta):
 			$AnimationPlayer.play("hover")
 	
 	move_and_slide()
+
+@rpc("any_peer", "call_local")
+func attack_effect():
+	$SwordAttack.play()
 
 @rpc("call_local")
 func attack(at: Vector2, from_peer_id: int):
