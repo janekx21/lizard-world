@@ -15,6 +15,8 @@ func _ready():
 		$MasterPopup.popup_centered()
 
 func _on_host_pressed():
+	$UI_Click.play()
+	#await($UI_Click, "finished")
 	start_server()
 	$MasterPopup.hide()
 	get_tree().paused = false
@@ -31,6 +33,7 @@ func start_server():
 	peer.peer_disconnected.connect(remove_player)
 
 func _on_connect_pressed():
+	$UI_Click.play()
 	start_client()
 	await multiplayer.multiplayer_peer.peer_connected
 	$MasterPopup.hide()
@@ -60,3 +63,9 @@ func remove_player(peer_id):
 
 func get_random_spawn():
 	return $Spawns.get_children().pick_random().global_position
+
+func _on_local_pressed():
+	$MasterPopup/CenterContainer/VBoxContainer/Host.text = "localhost"
+
+func _on_global_pressed():
+	$MasterPopup/CenterContainer/VBoxContainer/Host.text = "server.ch-l.de"

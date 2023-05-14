@@ -66,6 +66,7 @@ func _physics_process(delta):
 			attack.rpc_id(1, $Shape/HurtboxPoint.global_position, multiplayer.get_unique_id())
 			$AttackCooldown.start(0.2)
 			$AnimationPlayer.play("attack")
+			$SwordAttack.play()
 	
 	if Input.is_action_just_pressed("shoot"):
 		if $AttackCooldown.is_stopped():
