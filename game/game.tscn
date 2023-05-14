@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c5iknbtcn5etf"]
+[gd_scene load_steps=21 format=3 uid="uid://c5iknbtcn5etf"]
 
 [ext_resource type="Script" path="res://game/game.gd" id="1_7bnle"]
 [ext_resource type="Script" path="res://game/CameraFollow.gd" id="3_3s4u8"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://wfvwkbqwnwlo" path="res://textures/environment/lava3.png" id="14_c43d0"]
 [ext_resource type="TileSet" uid="uid://casq8nx8x8wku" path="res://textures/tileset/stone_terrain.tres" id="15_k1h8q"]
 [ext_resource type="AudioStream" uid="uid://cknmsmbj53que" path="res://sounds/click_001.ogg" id="15_wlp73"]
+[ext_resource type="Script" path="res://game/ScoreBox.gd" id="16_aysn4"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_flpvp"]
 
@@ -151,6 +152,7 @@ script = ExtResource("3_3s4u8")
 [node name="DeathArea" type="Area2D" parent="."]
 script = ExtResource("4_2irw5")
 damage = 9999
+remove_on_damage = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea"]
 shape = SubResource("WorldBoundaryShape2D_d2w1s")
@@ -230,6 +232,24 @@ texture = ExtResource("8_stbfd")
 
 [node name="UI_Click" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_wlp73")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 26.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+
+[node name="ScoreBox" type="HBoxContainer" parent="CanvasLayer/UI"]
+layout_mode = 2
+script = ExtResource("16_aysn4")
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/ScoreBox"]
+layout_mode = 2
+text = "Hello World"
 
 [connection signal="pressed" from="MasterPopup/CenterContainer/VBoxContainer/HBoxContainer/Local" to="." method="_on_local_pressed"]
 [connection signal="pressed" from="MasterPopup/CenterContainer/VBoxContainer/HBoxContainer/Global" to="." method="_on_global_pressed"]

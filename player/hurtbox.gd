@@ -3,10 +3,11 @@ class_name Hurtbox
 
 @export var origin_peer_id: int
 @export var damage: int
+@export var remove_on_damage: bool = true
 
 signal on_remove
 
-@rpc
+@rpc("call_local")
 func remove():
 	if is_multiplayer_authority():
 		queue_free()

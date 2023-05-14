@@ -69,3 +69,10 @@ func _on_local_pressed():
 
 func _on_global_pressed():
 	$MasterPopup/CenterContainer/VBoxContainer/Host.text = "server.ch-l.de"
+
+func _process(delta):
+	var players: Array[Player] = []
+	for c in $Network.get_children():
+		if c is Player:
+			players.push_back(c)
+	$CanvasLayer/UI/ScoreBox.render_score(players)

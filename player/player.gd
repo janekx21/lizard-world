@@ -16,14 +16,13 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @export var color: Color = [Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW, Color.VIOLET, Color.CYAN, Color.ORANGE, Color.OLIVE, Color.DARK_RED, Color.NAVY_BLUE].pick_random()
 @export var team: Hat = Hat.values().pick_random()
-
-var max_hp = 3
+@export var fireball_count = 3
 @export var hp: int
+@export var score: int
+
 @onready var sprite = $Shape/SpriteMod/Sprite2D
 
 var last_on_ground = false
-
-var fireball_count = 3
 
 func get_id():
 	return str(name).to_int()
@@ -37,7 +36,7 @@ func _ready():
 		spawn()
 
 func _process(delta):
-	sprite.modulate = color.lightened(.5)
+	sprite.self_modulate = color.lightened(.5)
 	for child in $Health.get_children():
 		if child is Sprite2D && child.name.is_valid_int():
 			child.visible = child.name.to_int() <= hp
@@ -49,6 +48,9 @@ func _process(delta):
 	$Shape/WalkParticles.emitting = is_on_floor() and abs(velocity.x) > 10
 	
 	$Shape/SpriteMod/Sprite2D/Hat.texture = hat_to_texture(team)
+	
+	if fireball_count:
+		$Shape/Breath.emitting = fireball_count > 0
 
 func spawn():
 	hp = 3
@@ -96,6 +98,9 @@ func _physics_process(delta):
 		if not $AnimationPlayer.is_playing() and is_on_floor():
 			$AnimationPlayer.play("hover")
 	
+	if not $AnimationPlayer.is_playing():
+		$AnimationPlayer.play("idle")
+	
 	move_and_slide()
 
 @rpc("any_peer", "call_local")
@@ -128,17 +133,25 @@ func hitbox_entered(area: Area2D):
 	var hurtbox = area as Hurtbox
 	var other = hurtbox.get_player()
 	if other && other.team == team: return
-	get_damage(hurtbox.damage)
-	hurtbox.remove.rpc_id(1)
+	get_damage(hurtbox.damage, other)
+	if hurtbox.remove_on_damage: hurtbox.remove.rpc_id(1)
 
-func get_damage(damage: int):
+func get_damage(damage: int, player: Player):
 	damage_effect.rpc()
 	hp -= damage
 	if hp <= 0:
+		if player:
+			player.award_kill.rpc_id(player.get_id())
+		else:
+			score -= 1
 		spawn()
 		for child in get_parent().get_children():
 			if child is Player:
 				child.swap_team.rpc()
+
+@rpc("any_peer")
+func award_kill():
+	score += 1
 
 @rpc("any_peer", "call_local")
 func damage_effect():
