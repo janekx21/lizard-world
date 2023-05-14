@@ -145,7 +145,7 @@ position = Vector2(-1159, -1553)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-2229, -865)
-zoom = Vector2(0.55, 0.55)
+zoom = Vector2(0.439, 0.439)
 limit_left = -2982
 limit_right = 3758
 limit_bottom = 0
@@ -173,37 +173,41 @@ sprite_frames = SubResource("SpriteFrames_mrnqe")
 autoplay = "default"
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_ignore_camera_zoom = true
 
 [node name="Sky" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(1, 0)
 motion_scale = Vector2(0, 0)
 
 [node name="Background" type="Sprite2D" parent="ParallaxBackground/Sky"]
-position = Vector2(771.556, 433)
-scale = Vector2(0.8, 0.8)
+position = Vector2(576.889, 323.5)
+scale = Vector2(0.597222, 0.597222)
 texture = ExtResource("5_jwoyd")
 
 [node name="Clouds" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.1, 0.1)
 
 [node name="Cloud1" type="Sprite2D" parent="ParallaxBackground/Clouds"]
-position = Vector2(91, 586)
-scale = Vector2(1.73224, 1.73224)
+position = Vector2(-24, 466)
+scale = Vector2(1.261, 1.261)
 texture = ExtResource("6_q5ob3")
 
 [node name="Cloud2" type="Sprite2D" parent="ParallaxBackground/Clouds"]
-position = Vector2(111, 255)
+position = Vector2(318, 188)
+scale = Vector2(1.261, 1.261)
 texture = ExtResource("7_2qkhw")
 
 [node name="Cloud3" type="Sprite2D" parent="ParallaxBackground/Clouds"]
-position = Vector2(1349, 499)
+position = Vector2(1263, 368)
+scale = Vector2(1.261, 1.261)
 texture = ExtResource("8_stbfd")
 
 [node name="Background" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.2, 0.2)
 
 [node name="Volcano1" type="AnimatedSprite2D" parent="ParallaxBackground/Background"]
-position = Vector2(571, 198)
-scale = Vector2(0.461574, 0.461574)
+position = Vector2(583, 66)
+scale = Vector2(0.340509, 0.340509)
 sprite_frames = SubResource("SpriteFrames_mbfh5")
 autoplay = "default"
 frame_progress = 0.437651
@@ -212,31 +216,31 @@ frame_progress = 0.437651
 motion_scale = Vector2(0.3, 0.3)
 
 [node name="Cloud1" type="Sprite2D" parent="ParallaxBackground/Clouds2"]
-position = Vector2(-75, 387)
+position = Vector2(-331, -225)
 texture = ExtResource("6_q5ob3")
 
 [node name="Cloud2" type="Sprite2D" parent="ParallaxBackground/Clouds2"]
-position = Vector2(209, -21)
+position = Vector2(617, -125)
 texture = ExtResource("7_2qkhw")
 
 [node name="Cloud3" type="Sprite2D" parent="ParallaxBackground/Clouds2"]
-position = Vector2(1186, 473)
+position = Vector2(1536, -166)
 texture = ExtResource("8_stbfd")
 
 [node name="Clouds3" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.4, 0.4)
+motion_scale = Vector2(0.35, 0.35)
 
 [node name="Cloud1" type="Sprite2D" parent="ParallaxBackground/Clouds3"]
-position = Vector2(775, -737)
+position = Vector2(691, -574)
 scale = Vector2(0.944946, 0.96185)
 texture = ExtResource("6_q5ob3")
 
 [node name="Cloud2" type="Sprite2D" parent="ParallaxBackground/Clouds3"]
-position = Vector2(1558, -490)
+position = Vector2(1492, -513)
 texture = ExtResource("7_2qkhw")
 
 [node name="Cloud3" type="Sprite2D" parent="ParallaxBackground/Clouds3"]
-position = Vector2(-225, -628)
+position = Vector2(-255, -575)
 scale = Vector2(0.613701, 0.613701)
 texture = ExtResource("8_stbfd")
 

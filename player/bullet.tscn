@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdslpey3laows"]
+[gd_scene load_steps=10 format=3 uid="uid://cdslpey3laows"]
 
 [ext_resource type="Script" path="res://player/bullet.gd" id="1_kqj52"]
-[ext_resource type="Texture2D" uid="uid://ctbhdy6i2h211" path="res://textures/particles/circle_05.png" id="2_xxup3"]
+[ext_resource type="Texture2D" uid="uid://dc4kwijm31f1w" path="res://textures/player/feuerball.png" id="2_68c4n"]
 [ext_resource type="Script" path="res://player/hurtbox.gd" id="3_b7kd4"]
+[ext_resource type="Texture2D" uid="uid://qrxq30cohtr" path="res://textures/splashes/splat12.png" id="4_nnma8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kqnay"]
 radius = 26.1725
@@ -27,14 +28,17 @@ properties/4/sync = true
 [sub_resource type="CircleShape2D" id="CircleShape2D_lrakj"]
 radius = 51.0882
 
+[sub_resource type="Curve" id="Curve_lskub"]
+_data = [Vector2(0, 0.540373), 0.0, 0.0, 0, 0, Vector2(0.503731, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.515528), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_7cd0u"]
+offsets = PackedFloat32Array(0, 0.690283, 1)
+colors = PackedColorArray(1, 0.854902, 0, 1, 0.921569, 0.466667, 0, 1, 0, 0, 0, 0)
+
 [node name="Bullet" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_kqj52")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(0.898039, 0.2, 0, 1)
-scale = Vector2(0.341431, 0.341431)
-texture = ExtResource("2_xxup3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_kqnay")
@@ -48,5 +52,26 @@ damage = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CircleShape2D_lrakj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.134, 0.134)
+texture = ExtResource("2_68c4n")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = -1
+scale = Vector2(1.51951, 0.911612)
+amount = 20
+lifetime = 0.1
+texture = ExtResource("4_nnma8")
+direction = Vector2(0, -1)
+spread = 30.0
+gravity = Vector2(0, -1000)
+initial_velocity_min = 191.49
+initial_velocity_max = 234.04
+angle_max = 360.0
+scale_amount_min = 0.1
+scale_amount_max = 0.3
+scale_amount_curve = SubResource("Curve_lskub")
+color_ramp = SubResource("Gradient_7cd0u")
 
 [connection signal="on_remove" from="Hurtbox" to="." method="_on_hurtbox_on_remove"]
