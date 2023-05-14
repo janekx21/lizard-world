@@ -55,9 +55,14 @@ func spawn():
 	fireball_count = 3
 	global_position = get_tree().root.get_node("Game").get_random_spawn()
 
+@rpc("any_peer","call_local")
+func land_effect():
+	$Shape/LandParticles.restart()
+	$land.play()
+
 func _physics_process(delta):
 	if not last_on_ground and is_on_floor():
-		$Shape/LandParticles.restart()
+		land_effect.rpc()
 	last_on_ground = is_on_floor()
 	
 	if not is_multiplayer_authority(): return
