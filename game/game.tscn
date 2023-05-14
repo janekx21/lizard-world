@@ -17,7 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://cknmsmbj53que" path="res://sounds/click_001.ogg" id="15_wlp73"]
 [ext_resource type="Script" path="res://game/ScoreBox.gd" id="16_aysn4"]
 [ext_resource type="AudioStream" uid="uid://c52g0hg1dujwk" path="res://sounds/lavaLoop.ogg" id="16_ky4sk"]
-[ext_resource type="AudioStream" uid="uid://b6dxm0dx63xrl" path="res://sounds/playerJoinLeave.ogg" id="17_y5nm1"]
+[ext_resource type="AudioStream" uid="uid://cfukmreyb165u" path="res://sounds/eingesprochen/hallo.ogg" id="18_ui3ql"]
 [ext_resource type="AudioStream" uid="uid://ct3mjixu4tm7j" path="res://sounds/bg_music.ogg" id="19_8ba5q"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_flpvp"]
@@ -323,7 +323,7 @@ text = "Hello World"
 stream = ExtResource("16_ky4sk")
 
 [node name="PlayerJoinLeave" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("17_y5nm1")
+stream = ExtResource("18_ui3ql")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_8ba5q")
