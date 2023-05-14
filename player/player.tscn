@@ -179,6 +179,18 @@ scale_amount_max = 0.5
 scale_amount_curve = SubResource("Curve_7chod")
 color_ramp = SubResource("Gradient_43unt")
 
+[node name="Muzzle1" type="Marker2D" parent="Shape"]
+position = Vector2(31, -29)
+rotation = 0.0872665
+
+[node name="Muzzle2" type="Marker2D" parent="Shape"]
+position = Vector2(31, -29)
+rotation = -0.349066
+
+[node name="Muzzle3" type="Marker2D" parent="Shape"]
+position = Vector2(31, -29)
+rotation = -0.610865
+
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_7y5kg")
 
