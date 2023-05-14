@@ -60,7 +60,7 @@ script = ExtResource("1_7bnle")
 [node name="Network" type="Node" parent="."]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://player/player.tscn", "res://player/hurtbox.tscn")
+_spawnable_scenes = PackedStringArray("res://player/player.tscn", "res://player/hurtbox.tscn", "res://player/bullet.tscn")
 spawn_path = NodePath("../Network")
 
 [node name="MasterPopup" type="Window" parent="."]

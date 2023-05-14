@@ -108,7 +108,9 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 4
 script = ExtResource("1_w4ivo")
+hp = null
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_cyigu")
@@ -179,15 +181,17 @@ scale_amount_max = 0.5
 scale_amount_curve = SubResource("Curve_7chod")
 color_ramp = SubResource("Gradient_43unt")
 
-[node name="Muzzle1" type="Marker2D" parent="Shape"]
+[node name="Muzzles" type="Node2D" parent="Shape"]
+
+[node name="Muzzle1" type="Marker2D" parent="Shape/Muzzles"]
 position = Vector2(31, -29)
 rotation = 0.0872665
 
-[node name="Muzzle2" type="Marker2D" parent="Shape"]
+[node name="Muzzle2" type="Marker2D" parent="Shape/Muzzles"]
 position = Vector2(31, -29)
 rotation = -0.349066
 
-[node name="Muzzle3" type="Marker2D" parent="Shape"]
+[node name="Muzzle3" type="Marker2D" parent="Shape/Muzzles"]
 position = Vector2(31, -29)
 rotation = -0.610865
 
