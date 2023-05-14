@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c5iknbtcn5etf"]
+[gd_scene load_steps=27 format=3 uid="uid://c5iknbtcn5etf"]
 
 [ext_resource type="Script" path="res://game/game.gd" id="1_7bnle"]
 [ext_resource type="PackedScene" uid="uid://ciu4ggg11cq10" path="res://enemy/enemy.tscn" id="2_bw475"]
@@ -21,6 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://c52g0hg1dujwk" path="res://sounds/lavaLoop.ogg" id="16_ky4sk"]
 [ext_resource type="AudioStream" uid="uid://cfukmreyb165u" path="res://sounds/eingesprochen/hallo.ogg" id="18_ui3ql"]
 [ext_resource type="AudioStream" uid="uid://ct3mjixu4tm7j" path="res://sounds/bg_music.ogg" id="19_8ba5q"]
+[ext_resource type="AudioStream" uid="uid://cjw5u1xbt4xdu" path="res://sounds/eingesprochen/tschuess.ogg" id="22_3sur2"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_flpvp"]
 
@@ -327,13 +328,16 @@ text = "Hello World"
 [node name="LavaLoop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_ky4sk")
 
-[node name="PlayerJoinLeave" type="AudioStreamPlayer" parent="."]
+[node name="PlayerJoin" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_ui3ql")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_8ba5q")
 volume_db = -10.0
 autoplay = true
+
+[node name="PlayerLeave" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("22_3sur2")
 
 [connection signal="pressed" from="MasterPopup/CenterContainer/VBoxContainer/HBoxContainer/Local" to="." method="_on_local_pressed"]
 [connection signal="pressed" from="MasterPopup/CenterContainer/VBoxContainer/HBoxContainer/Global" to="." method="_on_global_pressed"]
