@@ -23,6 +23,7 @@ func _on_host_pressed():
 	add_player(multiplayer.get_unique_id())
 
 func start_server():
+	$LavaLoop.play()
 	var peer = ENetMultiplayerPeer.new()
 	peer.create_server(PORT)
 	if peer.get_connection_status() == MultiplayerPeer.CONNECTION_DISCONNECTED:

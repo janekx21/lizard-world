@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bf8ui25uknntv"]
+[gd_scene load_steps=18 format=3 uid="uid://bf8ui25uknntv"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_w4ivo"]
 [ext_resource type="SpriteFrames" uid="uid://bs28dcxiogu0o" path="res://player/player.tres" id="4_4owvf"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dvrktfs18uv7u" path="res://textures/splashes/splat13.png" id="4_qsx8m"]
 [ext_resource type="Texture2D" uid="uid://bkca6v2tdxlxp" path="res://textures/splashes/splat08.png" id="5_jur31"]
 [ext_resource type="AudioStream" uid="uid://mj4fa2urblvn" path="res://sounds/sword.wav" id="6_vfs1x"]
+[ext_resource type="AudioStream" uid="uid://dtaf61balhvpu" path="res://sounds/bloodSplash.wav" id="7_fys0j"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cyigu"]
 radius = 42.0
@@ -175,18 +176,6 @@ scale_amount_max = 0.5
 scale_amount_curve = SubResource("Curve_7chod")
 color_ramp = SubResource("Gradient_43unt")
 
-[node name="Muzzle1" type="Marker2D" parent="Shape"]
-position = Vector2(31, -29)
-rotation = 0.0872665
-
-[node name="Muzzle2" type="Marker2D" parent="Shape"]
-position = Vector2(31, -29)
-rotation = -0.349066
-
-[node name="Muzzle3" type="Marker2D" parent="Shape"]
-position = Vector2(31, -29)
-rotation = -0.610865
-
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_7y5kg")
 
@@ -225,5 +214,10 @@ libraries = {
 
 [node name="SwordAttack" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_vfs1x")
+
+[node name="BloodSplash" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_fys0j")
+volume_db = 2.653
+attenuation = 2.0
 
 [connection signal="area_entered" from="Shape/Hitbox" to="." method="hitbox_entered"]

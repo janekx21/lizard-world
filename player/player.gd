@@ -136,6 +136,7 @@ func get_damage(damage: int):
 
 @rpc("any_peer", "call_local")
 func damage_effect():
+	$BloodSplash.play()
 	var splash = preload("res://particles/splash.tscn").instantiate()
 	splash.global_position = global_position
 	get_tree().root.add_child(splash)
