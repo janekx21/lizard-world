@@ -79,3 +79,12 @@ func _process(delta):
 		if c is Player:
 			players.push_back(c)
 	$CanvasLayer/UI/ScoreBox.render_score(players)
+
+
+func _on_credits_pressed():
+	$"Credits Popup".popup_centered()
+	pass # Replace with function body.
+
+func _on_close_popup_pressed():
+	$"Credits Popup".popup_hide()
+	pass # Replace with function body.
