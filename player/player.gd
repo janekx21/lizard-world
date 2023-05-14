@@ -159,7 +159,7 @@ func get_damage(damage: int, player: Player):
 
 @rpc("any_peer")
 func award_kill():
-	score += 1
+	score += 5
 
 @rpc("any_peer", "call_local")
 func damage_effect():
