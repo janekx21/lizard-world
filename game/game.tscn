@@ -1,21 +1,23 @@
-[gd_scene load_steps=21 format=3 uid="uid://c5iknbtcn5etf"]
+[gd_scene load_steps=22 format=3 uid="uid://c5iknbtcn5etf"]
 
 [ext_resource type="Script" path="res://game/game.gd" id="1_7bnle"]
 [ext_resource type="Script" path="res://game/CameraFollow.gd" id="3_3s4u8"]
 [ext_resource type="Script" path="res://player/hurtbox.gd" id="4_2irw5"]
-[ext_resource type="Texture2D" uid="uid://dituy55711xqj" path="res://textures/environment/background.png" id="5_jwoyd"]
-[ext_resource type="Texture2D" uid="uid://c6iy4oed0sfwn" path="res://textures/environment/volcano1.png" id="6_2q6fu"]
-[ext_resource type="Texture2D" uid="uid://b6ar8xnqeolap" path="res://textures/environment/cloud1.png" id="6_q5ob3"]
-[ext_resource type="Texture2D" uid="uid://b4ajk8fymqmd4" path="res://textures/environment/cloud2.png" id="7_2qkhw"]
-[ext_resource type="Texture2D" uid="uid://chm6gtv8qfnyh" path="res://textures/environment/volcano2.png" id="7_8h3jf"]
-[ext_resource type="Texture2D" uid="uid://b8v2imubpvqna" path="res://textures/environment/volcano3.png" id="8_7bdbl"]
-[ext_resource type="Texture2D" uid="uid://dnlfjifbk4bai" path="res://textures/environment/cloud3.png" id="8_stbfd"]
-[ext_resource type="Texture2D" uid="uid://y1tvw20dtgur" path="res://textures/environment/lava1.png" id="12_rkd4i"]
-[ext_resource type="Texture2D" uid="uid://cydhelsyji358" path="res://textures/environment/lava2.png" id="13_0xs1f"]
-[ext_resource type="Texture2D" uid="uid://wfvwkbqwnwlo" path="res://textures/environment/lava3.png" id="14_c43d0"]
+[ext_resource type="Texture2D" uid="uid://b0s63lkc4lysr" path="res://textures/environment/background.png" id="5_jwoyd"]
+[ext_resource type="Texture2D" uid="uid://cavs8yxsujft3" path="res://textures/environment/volcano1.png" id="6_2q6fu"]
+[ext_resource type="Texture2D" uid="uid://jkthde2k41of" path="res://textures/environment/cloud1.png" id="6_q5ob3"]
+[ext_resource type="Texture2D" uid="uid://eaw820cbrlqn" path="res://textures/environment/cloud2.png" id="7_2qkhw"]
+[ext_resource type="Texture2D" uid="uid://cf2xahja18jbk" path="res://textures/environment/volcano2.png" id="7_8h3jf"]
+[ext_resource type="Texture2D" uid="uid://dkr1n40hvhwru" path="res://textures/environment/volcano3.png" id="8_7bdbl"]
+[ext_resource type="Texture2D" uid="uid://c1ss3ouuvtgrj" path="res://textures/environment/cloud3.png" id="8_stbfd"]
+[ext_resource type="Texture2D" uid="uid://c8g8ert7u45bw" path="res://textures/environment/lava1.png" id="12_rkd4i"]
+[ext_resource type="Texture2D" uid="uid://sxt506xooyex" path="res://textures/environment/lava2.png" id="13_0xs1f"]
+[ext_resource type="Texture2D" uid="uid://c4wjguol0x44n" path="res://textures/environment/lava3.png" id="14_c43d0"]
 [ext_resource type="TileSet" uid="uid://casq8nx8x8wku" path="res://textures/tileset/stone_terrain.tres" id="15_k1h8q"]
 [ext_resource type="AudioStream" uid="uid://cknmsmbj53que" path="res://sounds/click_001.ogg" id="15_wlp73"]
 [ext_resource type="Script" path="res://game/ScoreBox.gd" id="16_aysn4"]
+[ext_resource type="AudioStream" uid="uid://c52g0hg1dujwk" path="res://sounds/lavaLoop.ogg" id="16_ky4sk"]
+[ext_resource type="AudioStream" uid="uid://b6dxm0dx63xrl" path="res://sounds/playerJoinLeave.ogg" id="17_y5nm1"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_flpvp"]
 
@@ -250,6 +252,12 @@ script = ExtResource("16_aysn4")
 [node name="Label" type="Label" parent="CanvasLayer/UI/ScoreBox"]
 layout_mode = 2
 text = "Hello World"
+
+[node name="LavaLoop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_ky4sk")
+
+[node name="PlayerJoinLeave" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_y5nm1")
 
 [connection signal="pressed" from="MasterPopup/CenterContainer/VBoxContainer/HBoxContainer/Local" to="." method="_on_local_pressed"]
 [connection signal="pressed" from="MasterPopup/CenterContainer/VBoxContainer/HBoxContainer/Global" to="." method="_on_global_pressed"]

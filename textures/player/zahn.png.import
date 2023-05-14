@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chm1yebv445kj"
-path="res://.godot/imported/Gegner_tot3.png-28d454955d8b091bcc07983de8eb85ab.ctex"
+uid="uid://d0watl71w50ya"
+path="res://.godot/imported/zahn.png-b9e38e7912316b6e2a2b12a59d3f9ecf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/player/Gegner_tot3.png"
-dest_files=["res://.godot/imported/Gegner_tot3.png-28d454955d8b091bcc07983de8eb85ab.ctex"]
+source_file="res://textures/player/zahn.png"
+dest_files=["res://.godot/imported/zahn.png-b9e38e7912316b6e2a2b12a59d3f9ecf.ctex"]
 
 [params]
 

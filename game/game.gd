@@ -23,6 +23,7 @@ func _on_host_pressed():
 	add_player(multiplayer.get_unique_id())
 
 func start_server():
+	$LavaLoop.play()
 	var peer = ENetMultiplayerPeer.new()
 	peer.create_server(PORT)
 	if peer.get_connection_status() == MultiplayerPeer.CONNECTION_DISCONNECTED:
@@ -54,11 +55,13 @@ func start_client():
 	multiplayer.multiplayer_peer = peer
 
 func add_player(peer_id):
+	$PlayerJoinLeave.play()
 	var player = preload("res://player/player.tscn").instantiate()
 	player.name = str(peer_id)
 	$Network.add_child(player)
 
 func remove_player(peer_id):
+	$PlayerJoinLeave.play()
 	$Network.remove_child($Network.get_node(str(peer_id)))
 
 func get_random_spawn():

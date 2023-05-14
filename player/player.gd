@@ -97,6 +97,7 @@ func _physics_process(delta):
 		$Shape.scale = Vector2.RIGHT * (1 if dir > 0 else -1) + Vector2.DOWN
 		if not $AnimationPlayer.is_playing() and is_on_floor():
 			$AnimationPlayer.play("hover")
+			$footsteps.play()
 	
 	if not $AnimationPlayer.is_playing():
 		$AnimationPlayer.play("idle")
@@ -155,6 +156,7 @@ func award_kill():
 
 @rpc("any_peer", "call_local")
 func damage_effect():
+	$BloodSplash.play()
 	var splash = preload("res://particles/splash.tscn").instantiate()
 	splash.global_position = global_position
 	get_tree().root.add_child(splash)
