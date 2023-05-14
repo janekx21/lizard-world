@@ -15,6 +15,8 @@ func _ready():
 		$MasterPopup.popup_centered()
 
 func _on_host_pressed():
+	$UI_Click.play()
+	#await($UI_Click, "finished")
 	start_server()
 	$MasterPopup.hide()
 	get_tree().paused = false
@@ -31,6 +33,7 @@ func start_server():
 	peer.peer_disconnected.connect(remove_player)
 
 func _on_connect_pressed():
+	$UI_Click.play()
 	start_client()
 	await multiplayer.multiplayer_peer.peer_connected
 	$MasterPopup.hide()
