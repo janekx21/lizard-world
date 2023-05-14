@@ -67,6 +67,11 @@ func _physics_process(delta):
 			$AttackCooldown.start(0.2)
 			$AnimationPlayer.play("attack")
 	
+	if Input.is_action_just_pressed("shoot"):
+		if $AttackCooldown.is_stopped():
+			shoot.rpc_id(1, $Shape/HurtboxPoint.global_position, multiplayer.get_unique_id())
+			$AttackCooldown.start(0.5)
+	
 	if dir:
 		$Shape.scale = Vector2.RIGHT * (1 if dir > 0 else -1) + Vector2.DOWN
 		if not $AnimationPlayer.is_playing() and is_on_floor():
@@ -81,7 +86,36 @@ func attack(at: Vector2, from_peer_id: int):
 	hurtbox.origin_peer_id = from_peer_id
 	hurtbox.damage = 1
 	find_parent("Network").add_child(hurtbox, true)
+	
+@rpc("call_local")
+func shoot(at: Vector2, from_peer_id: int):
+	var bullet_scene = preload("res://player/bullet.tscn")
+	var b1 = bullet_scene.instantiate()
+	var b2 = bullet_scene.instantiate()
+	var b3 = bullet_scene.instantiate()
+	find_parent("Network").add_child(b1)
+	find_parent("Network").add_child(b2)
+	find_parent("Network").add_child(b3)
+	#b1.global_transform = $Shape/Muzzle1.global_transform
+	#b2.global_transform = $Shape/Muzzle2.global_transform
+	#if $Shape.scale.get_scale() == Vector2:
+	print($Shape.get_scale())
+	if $Shape.get_scale() == Vector2(-1,1):
+		print("ich bims")
+		b1.get_node("Sprite2D").set_flip_v(true)
+		b2.get_node("Sprite2D").set_flip_v(true)
+		b3.get_node("Sprite2D").set_flip_v(true)
+	#	$bullet/Sprite2D.set_scale(1,-1)
+		
+	b1.velocity = Vector2(999, 0).rotated($Shape/Muzzle1.rotation)*$Shape.scale
+	b1.global_position = $Shape/Muzzle1.global_position
 
+	b2.velocity = Vector2(999, 0).rotated($Shape/Muzzle2.rotation)*$Shape.scale
+	b2.global_position = $Shape/Muzzle2.global_position
+	
+	b3.velocity = Vector2(999, 0).rotated($Shape/Muzzle3.rotation)*$Shape.scale
+	b3.global_position = $Shape/Muzzle3.global_position
+	
 func hitbox_entered(area: Area2D):
 	if not is_multiplayer_authority(): return
 	if not $InvisibilityTimer.is_stopped(): return
