@@ -95,6 +95,7 @@ func _physics_process(delta):
 		$Shape.scale = Vector2.RIGHT * (1 if dir > 0 else -1) + Vector2.DOWN
 		if not $AnimationPlayer.is_playing() and is_on_floor():
 			$AnimationPlayer.play("hover")
+			$footsteps.play()
 	
 	move_and_slide()
 
