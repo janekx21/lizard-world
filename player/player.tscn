@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bf8ui25uknntv"]
+[gd_scene load_steps=27 format=3 uid="uid://bf8ui25uknntv"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_w4ivo"]
 [ext_resource type="Texture2D" uid="uid://byqkjsds5nl40" path="res://textures/player/ZylinderHut.png" id="3_xw226"]
@@ -11,6 +11,9 @@
 [ext_resource type="AudioStream" uid="uid://cl81aykvsocc5" path="res://sounds/eingesprochen/spritz.ogg" id="9_78y6v"]
 [ext_resource type="AudioStream" uid="uid://ddth7y08qeer5" path="res://sounds/eingesprochen/lauf.ogg" id="10_v1oxb"]
 [ext_resource type="AudioStream" uid="uid://0daj0a702qph" path="res://sounds/eingesprochen/landen.ogg" id="11_tnci7"]
+[ext_resource type="AudioStream" uid="uid://eo601h1i7ch6" path="res://sounds/eingesprochen/feuerball.ogg" id="12_rk6wj"]
+[ext_resource type="AudioStream" uid="uid://cog4wrji11nt4" path="res://sounds/eingesprochen/huepf.ogg" id="13_p4513"]
+[ext_resource type="AudioStream" uid="uid://bxobllvl5pso3" path="res://sounds/eingesprochen/wechsel.ogg" id="14_14yls"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cyigu"]
 radius = 42.0
@@ -300,5 +303,14 @@ stream = ExtResource("10_v1oxb")
 
 [node name="LandSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_tnci7")
+
+[node name="Fireball" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_rk6wj")
+
+[node name="Jump" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_p4513")
+
+[node name="SwapTeam" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_14yls")
 
 [connection signal="area_entered" from="Shape/Hitbox" to="." method="hitbox_entered"]
