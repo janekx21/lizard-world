@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cdslpey3laows"]
 
 [ext_resource type="Script" path="res://player/bullet.gd" id="1_kqj52"]
-[ext_resource type="Texture2D" uid="uid://xb55bxdmc51w" path="res://textures/tractor.png" id="2_cqw3n"]
+[ext_resource type="Texture2D" uid="uid://ctbhdy6i2h211" path="res://textures/particles/circle_05.png" id="2_xxup3"]
 [ext_resource type="Script" path="res://player/hurtbox.gd" id="3_b7kd4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kqnay"]
@@ -32,9 +32,9 @@ collision_layer = 2
 script = ExtResource("1_kqj52")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-10, 2)
-scale = Vector2(3.75, 2.55555)
-texture = ExtResource("2_cqw3n")
+self_modulate = Color(0.898039, 0.2, 0, 1)
+scale = Vector2(0.341431, 0.341431)
+texture = ExtResource("2_xxup3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_kqnay")

@@ -1,15 +1,16 @@
-[gd_scene load_steps=23 format=3 uid="uid://bf8ui25uknntv"]
+[gd_scene load_steps=24 format=3 uid="uid://bf8ui25uknntv"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_w4ivo"]
 [ext_resource type="Texture2D" uid="uid://byqkjsds5nl40" path="res://textures/player/ZylinderHut.png" id="3_xw226"]
 [ext_resource type="SpriteFrames" uid="uid://bs28dcxiogu0o" path="res://player/player.tres" id="4_4owvf"]
-[ext_resource type="Texture2D" uid="uid://dbcrwkj8v3rka" path="res://icon.svg" id="4_pxlay"]
 [ext_resource type="Texture2D" uid="uid://dvrktfs18uv7u" path="res://textures/splashes/splat13.png" id="4_qsx8m"]
 [ext_resource type="Texture2D" uid="uid://bkca6v2tdxlxp" path="res://textures/splashes/splat08.png" id="5_jur31"]
 [ext_resource type="Texture2D" uid="uid://cp1cvy5wkayrn" path="res://textures/splashes/splat34.png" id="6_fmi01"]
 [ext_resource type="AudioStream" uid="uid://mj4fa2urblvn" path="res://sounds/sword.wav" id="6_vfs1x"]
+[ext_resource type="Texture2D" uid="uid://d0watl71w50ya" path="res://textures/player/zahn.png" id="7_1a56r"]
 [ext_resource type="AudioStream" uid="uid://dtaf61balhvpu" path="res://sounds/bloodSplash.wav" id="8_nytix"]
 [ext_resource type="AudioStream" uid="uid://bbg3kf75672r" path="res://sounds/footstep02.ogg" id="9_g7rsa"]
+[ext_resource type="AudioStream" uid="uid://cyvhv3x5fkgqy" path="res://sounds/footstep09.ogg" id="11_g41n2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cyigu"]
 radius = 42.0
@@ -259,24 +260,25 @@ wait_time = 0.2
 one_shot = true
 
 [node name="Health" type="Node2D" parent="."]
-position = Vector2(0, -111)
+position = Vector2(0, -131)
+scale = Vector2(0.985724, 0.985724)
 
 [node name="2" type="Sprite2D" parent="Health"]
 position = Vector2(-69, 0)
 rotation = -0.238899
-scale = Vector2(0.459867, 0.459867)
-texture = ExtResource("4_pxlay")
+scale = Vector2(0.166, 0.166)
+texture = ExtResource("7_1a56r")
 
 [node name="1" type="Sprite2D" parent="Health"]
 position = Vector2(73, 0)
 rotation = 0.315517
-scale = Vector2(0.459867, 0.459867)
-texture = ExtResource("4_pxlay")
+scale = Vector2(0.166, 0.166)
+texture = ExtResource("7_1a56r")
 
 [node name="3" type="Sprite2D" parent="Health"]
 position = Vector2(-3.8147e-06, -31)
-scale = Vector2(0.513748, 0.513748)
-texture = ExtResource("4_pxlay")
+scale = Vector2(0.166, 0.166)
+texture = ExtResource("7_1a56r")
 
 [node name="InvisibilityTimer" type="Timer" parent="."]
 
@@ -295,5 +297,8 @@ stream = ExtResource("8_nytix")
 
 [node name="footsteps" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_g7rsa")
+
+[node name="LandSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_g41n2")
 
 [connection signal="area_entered" from="Shape/Hitbox" to="." method="hitbox_entered"]

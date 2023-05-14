@@ -62,7 +62,7 @@ func spawn():
 @rpc("any_peer","call_local")
 func land_effect():
 	$Shape/LandParticles.restart()
-	$land.play()
+	$LandSound.play()
 
 func _physics_process(delta):
 	if not last_on_ground and is_on_floor():
