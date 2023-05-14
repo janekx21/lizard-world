@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c5iknbtcn5etf"]
+[gd_scene load_steps=24 format=3 uid="uid://c5iknbtcn5etf"]
 
 [ext_resource type="Script" path="res://game/game.gd" id="1_7bnle"]
 [ext_resource type="Script" path="res://game/CameraFollow.gd" id="3_3s4u8"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" path="res://game/ScoreBox.gd" id="16_aysn4"]
 [ext_resource type="AudioStream" uid="uid://c52g0hg1dujwk" path="res://sounds/lavaLoop.ogg" id="16_ky4sk"]
 [ext_resource type="AudioStream" uid="uid://b6dxm0dx63xrl" path="res://sounds/playerJoinLeave.ogg" id="17_y5nm1"]
+[ext_resource type="AudioStream" uid="uid://ct3mjixu4tm7j" path="res://sounds/bg_music.ogg" id="19_8ba5q"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_flpvp"]
 
@@ -258,6 +259,11 @@ stream = ExtResource("16_ky4sk")
 
 [node name="PlayerJoinLeave" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_y5nm1")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_8ba5q")
+volume_db = -10.0
+autoplay = true
 
 [connection signal="pressed" from="MasterPopup/CenterContainer/VBoxContainer/HBoxContainer/Local" to="." method="_on_local_pressed"]
 [connection signal="pressed" from="MasterPopup/CenterContainer/VBoxContainer/HBoxContainer/Global" to="." method="_on_global_pressed"]
