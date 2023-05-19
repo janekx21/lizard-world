@@ -10,6 +10,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	visible = hp > 0
+	if not visible: return
 	for child in find_parent("Network").get_children():
 		if child is Player:
 			var dir = child.global_position - global_position
@@ -22,12 +23,12 @@ func _on_area_2d_area_entered(area: Area2D):
 	if not area is Hurtbox: return
 	var hurtbox = area as Hurtbox
 	var other = hurtbox.get_player()
-	#if other && other.team == team: return
+	# if other && other.team == team: return
 	get_damage(hurtbox.damage, other)
 	if hurtbox.remove_on_damage: hurtbox.remove.rpc_id(1)
 
 func get_damage(damage, player: Player):
-	if hp <= 0: return
+	if hp <= 0 or !player: return
 	hp -= damage
 	damage_effect.rpc()
 	if hp <= 0:

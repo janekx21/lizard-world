@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yujb2tu73p1e"
-path="res://.godot/imported/HexenHut.png-aab326492d59afd08b8ae2b013d3f4e9.ctex"
+uid="uid://b0gxhompdbst6"
+path="res://.godot/imported/sword.png-75a5dffd39efd6c580336aa83f79c80c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/player/HexenHut.png"
-dest_files=["res://.godot/imported/HexenHut.png-aab326492d59afd08b8ae2b013d3f4e9.ctex"]
+source_file="res://textures/player/sword.png"
+dest_files=["res://.godot/imported/sword.png-75a5dffd39efd6c580336aa83f79c80c.ctex"]
 
 [params]
 

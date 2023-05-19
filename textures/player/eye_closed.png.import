@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://leff8u33vqa5"
-path="res://.godot/imported/AcagamicsHut.png-a2b38870e4a563c97655dab7f5878eab.ctex"
+uid="uid://cgicy0u0gva6u"
+path="res://.godot/imported/eye_closed.png-104b16bc3b91b3ed56d3963769fd2a85.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/player/AcagamicsHut.png"
-dest_files=["res://.godot/imported/AcagamicsHut.png-a2b38870e4a563c97655dab7f5878eab.ctex"]
+source_file="res://textures/player/eye_closed.png"
+dest_files=["res://.godot/imported/eye_closed.png-104b16bc3b91b3ed56d3963769fd2a85.ctex"]
 
 [params]
 

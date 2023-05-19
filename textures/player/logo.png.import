@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://byqkjsds5nl40"
-path="res://.godot/imported/ZylinderHut.png-f1e789eccc6a5f79c9bc35aa7527bdff.ctex"
+uid="uid://bd7gohrv8hevy"
+path="res://.godot/imported/logo.png-066058d9045afc9111e9ee2dbb089909.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/player/ZylinderHut.png"
-dest_files=["res://.godot/imported/ZylinderHut.png-f1e789eccc6a5f79c9bc35aa7527bdff.ctex"]
+source_file="res://textures/player/logo.png"
+dest_files=["res://.godot/imported/logo.png-066058d9045afc9111e9ee2dbb089909.ctex"]
 
 [params]
 

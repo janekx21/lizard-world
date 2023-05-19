@@ -1,15 +1,26 @@
-[gd_scene load_steps=27 format=3 uid="uid://bf8ui25uknntv"]
+[gd_scene load_steps=41 format=3 uid="uid://shaqdqaif8bv"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_w4ivo"]
-[ext_resource type="Texture2D" uid="uid://byqkjsds5nl40" path="res://textures/player/ZylinderHut.png" id="3_xw226"]
-[ext_resource type="SpriteFrames" uid="uid://bs28dcxiogu0o" path="res://player/player.tres" id="4_4owvf"]
+[ext_resource type="Texture2D" uid="uid://byqkjsds5nl40" path="res://textures/player/hats/ZylinderHut.png" id="3_32oe2"]
+[ext_resource type="Texture2D" uid="uid://b0gxhompdbst6" path="res://textures/player/sword.png" id="3_gj45r"]
+[ext_resource type="Texture2D" uid="uid://cpao1h5p40ec8" path="res://textures/player/sword_blurred.png" id="3_lwv4t"]
+[ext_resource type="Texture2D" uid="uid://leff8u33vqa5" path="res://textures/player/hats/AcagamicsHut.png" id="4_4ddmg"]
 [ext_resource type="Texture2D" uid="uid://dvrktfs18uv7u" path="res://textures/splashes/splat13.png" id="4_qsx8m"]
 [ext_resource type="Texture2D" uid="uid://bkca6v2tdxlxp" path="res://textures/splashes/splat08.png" id="5_jur31"]
+[ext_resource type="Texture2D" uid="uid://yrfaotnhkhid" path="res://textures/player/hats/GeweihHut.png" id="5_ka5li"]
+[ext_resource type="Texture2D" uid="uid://yujb2tu73p1e" path="res://textures/player/hats/HexenHut.png" id="6_00jtg"]
 [ext_resource type="Texture2D" uid="uid://cp1cvy5wkayrn" path="res://textures/splashes/splat34.png" id="6_fmi01"]
 [ext_resource type="Texture2D" uid="uid://d0watl71w50ya" path="res://textures/player/zahn.png" id="7_1a56r"]
+[ext_resource type="Texture2D" uid="uid://caakeixtr3s5t" path="res://textures/player/demo3.png" id="7_jgeil"]
+[ext_resource type="Texture2D" uid="uid://4qwlnjtjpqjn" path="res://textures/player/wing/wing_0.png" id="8_661sd"]
 [ext_resource type="AudioStream" uid="uid://c2u5gicqmpyu1" path="res://sounds/eingesprochen/schlag.ogg" id="8_n0y1f"]
 [ext_resource type="AudioStream" uid="uid://cl81aykvsocc5" path="res://sounds/eingesprochen/spritz.ogg" id="9_78y6v"]
+[ext_resource type="Texture2D" uid="uid://737y30dympyl" path="res://textures/player/wing/wing_1.png" id="9_gh3r0"]
+[ext_resource type="Texture2D" uid="uid://pg4si5nvkpjn" path="res://textures/player/eye.png" id="10_iasfq"]
+[ext_resource type="Texture2D" uid="uid://de7fw84d18bin" path="res://textures/player/eye_crossed.png" id="10_iugfm"]
+[ext_resource type="Texture2D" uid="uid://cs6mpod1nap2a" path="res://textures/player/wing/wing_2.png" id="10_pcwgx"]
 [ext_resource type="AudioStream" uid="uid://ddth7y08qeer5" path="res://sounds/eingesprochen/lauf.ogg" id="10_v1oxb"]
+[ext_resource type="Texture2D" uid="uid://cgicy0u0gva6u" path="res://textures/player/eye_closed.png" id="11_mj3x3"]
 [ext_resource type="AudioStream" uid="uid://0daj0a702qph" path="res://sounds/eingesprochen/landen.ogg" id="11_tnci7"]
 [ext_resource type="AudioStream" uid="uid://eo601h1i7ch6" path="res://sounds/eingesprochen/feuerball.ogg" id="12_rk6wj"]
 [ext_resource type="AudioStream" uid="uid://cog4wrji11nt4" path="res://sounds/eingesprochen/huepf.ogg" id="13_p4513"]
@@ -17,7 +28,69 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cyigu"]
 radius = 42.0
-height = 162.0
+height = 156.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c0op7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_4ddmg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ka5li")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_00jtg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_32oe2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qp0lu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_661sd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_gh3r0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_pcwgx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_gh3r0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_51egm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_iugfm")
+}],
+"loop": true,
+"name": &"cross",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 20.0,
+"texture": ExtResource("10_iasfq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_mj3x3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_raog1"]
 radius = 62.0081
@@ -76,18 +149,30 @@ properties/9/sync = true
 
 [sub_resource type="Animation" id="Animation_2s83s"]
 resource_name = "attack"
-length = 0.3
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SpriteMod/Sprite2D:animation")
+tracks/0/path = NodePath("SpriteMod/Lizard/Hand:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 0.0640999, 0.2),
+"transitions": PackedFloat32Array(0.353554, 0.517632, 1),
+"update": 0,
+"values": [0.0, 2.0944, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteMod/Lizard/Hand/Sword:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [&"swing", &"walk"]
+"values": [ExtResource("3_lwv4t"), ExtResource("3_gj45r")]
 }
 
 [sub_resource type="Animation" id="Animation_0k6gl"]
@@ -97,53 +182,49 @@ step = 0.05
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SpriteMod/Sprite2D:position:y")
+tracks/0/path = NodePath("SpriteMod/Lizard:position:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(20, -0.25, 0, 0.0363216, -27.1391, -11, -0.02, 0, 0.02, 0, 20, -0.0353888, -26.1675, 0.05, 1),
-"times": PackedFloat32Array(0, 0.102128, 0.2)
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SpriteMod/Sprite2D:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.00022151),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"walk"]
+"points": PackedFloat32Array(-86, -0.01, 0, 0.01, 0, -116.5, -0.05, 0, 0.05, 2, -86, -0.01, 0, 0.01, 0),
+"times": PackedFloat32Array(0, 0.1, 0.2)
 }
 
 [sub_resource type="Animation" id="Animation_vc1pg"]
 resource_name = "idle"
-length = 0.1
-tracks/0/type = "value"
+tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SpriteMod/Sprite2D:sprite_frames")
+tracks/0/path = NodePath("SpriteMod/Lizard:scale:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("4_4owvf")]
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1.1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
 }
-tracks/1/type = "value"
+tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("SpriteMod/Sprite2D:position")
+tracks/1/path = NodePath("SpriteMod/Lizard:scale:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(7, 20)]
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0.9, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpriteMod/Lizard:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-86, -0.25, 0, 0.25, 0, -78, -0.25, 0, 0.25, 0, -86, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qcapg"]
@@ -155,28 +236,51 @@ _data = {
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 4
+collision_mask = 5
 script = ExtResource("1_w4ivo")
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_cyigu")
 
 [node name="SpriteMod" type="Node2D" parent="Shape"]
+position = Vector2(0, 78)
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="Shape/SpriteMod"]
-position = Vector2(7, 20)
-scale = Vector2(0.170087, 0.170087)
-sprite_frames = ExtResource("4_4owvf")
-animation = &"swing"
-autoplay = "walk"
+[node name="Lizard" type="Sprite2D" parent="Shape/SpriteMod"]
+position = Vector2(-2, -86)
+texture = ExtResource("7_jgeil")
 flip_h = true
 
-[node name="Hat" type="Sprite2D" parent="Shape/SpriteMod/Sprite2D"]
-position = Vector2(35.2761, 264.57)
-scale = Vector2(1.53823, 1.53823)
-texture = ExtResource("3_xw226")
+[node name="Hand" type="Node2D" parent="Shape/SpriteMod/Lizard"]
+position = Vector2(46, 12)
+
+[node name="Sword" type="Sprite2D" parent="Shape/SpriteMod/Lizard/Hand"]
+z_index = -1
+position = Vector2(-5, -59)
+texture = ExtResource("3_gj45r")
+
+[node name="Hat" type="AnimatedSprite2D" parent="Shape/SpriteMod/Lizard"]
+position = Vector2(-17.9999, -74)
+scale = Vector2(0.238778, 0.238778)
+sprite_frames = SubResource("SpriteFrames_c0op7")
+
+[node name="Wings" type="AnimatedSprite2D" parent="Shape/SpriteMod/Lizard"]
+position = Vector2(-59, -17)
+sprite_frames = SubResource("SpriteFrames_qp0lu")
+autoplay = "default"
+frame_progress = 0.0452236
+flip_h = true
+
+[node name="Eye" type="AnimatedSprite2D" parent="Shape/SpriteMod/Lizard"]
+position = Vector2(15, -41)
+sprite_frames = SubResource("SpriteFrames_51egm")
+animation = &"cross"
+autoplay = "default"
+flip_h = true
 
 [node name="Hitbox" type="Area2D" parent="Shape"]
 position = Vector2(0, 1)
+collision_layer = 8
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shape/Hitbox"]
 shape = SubResource("CircleShape2D_raog1")
@@ -229,15 +333,15 @@ color_ramp = SubResource("Gradient_43unt")
 [node name="Muzzles" type="Node2D" parent="Shape"]
 
 [node name="Muzzle1" type="Marker2D" parent="Shape/Muzzles"]
-position = Vector2(31, -29)
+position = Vector2(56.9273, -29)
 rotation = 0.0872665
 
 [node name="Muzzle2" type="Marker2D" parent="Shape/Muzzles"]
-position = Vector2(31, -29)
+position = Vector2(56.9273, -29)
 rotation = -0.349066
 
 [node name="Muzzle3" type="Marker2D" parent="Shape/Muzzles"]
-position = Vector2(31, -29)
+position = Vector2(56.9273, -29)
 rotation = -0.610865
 
 [node name="Breath" type="CPUParticles2D" parent="Shape"]
@@ -267,20 +371,20 @@ position = Vector2(0, -131)
 scale = Vector2(0.985724, 0.985724)
 
 [node name="2" type="Sprite2D" parent="Health"]
+z_index = 2
 position = Vector2(-69, 0)
 rotation = -0.238899
-scale = Vector2(0.166, 0.166)
 texture = ExtResource("7_1a56r")
 
 [node name="1" type="Sprite2D" parent="Health"]
+z_index = 2
 position = Vector2(73, 0)
 rotation = 0.315517
-scale = Vector2(0.166, 0.166)
 texture = ExtResource("7_1a56r")
 
 [node name="3" type="Sprite2D" parent="Health"]
+z_index = 2
 position = Vector2(-3.8147e-06, -31)
-scale = Vector2(0.166, 0.166)
 texture = ExtResource("7_1a56r")
 
 [node name="InvisibilityTimer" type="Timer" parent="."]
@@ -298,7 +402,7 @@ stream = ExtResource("8_n0y1f")
 [node name="BloodSplash" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_78y6v")
 
-[node name="footsteps" type="AudioStreamPlayer2D" parent="."]
+[node name="Footsteps" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_v1oxb")
 
 [node name="LandSound" type="AudioStreamPlayer2D" parent="."]

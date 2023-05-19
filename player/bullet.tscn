@@ -29,7 +29,7 @@ properties/4/sync = true
 radius = 51.0882
 
 [sub_resource type="Curve" id="Curve_lskub"]
-_data = [Vector2(0, 0.540373), 0.0, 0.0, 0, 0, Vector2(0.503731, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.515528), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.540373), 0.0, 0.0, 0, 0, Vector2(0.329305, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="Gradient" id="Gradient_7cd0u"]
@@ -47,6 +47,8 @@ shape = SubResource("CircleShape2D_kqnay")
 replication_config = SubResource("SceneReplicationConfig_6qlbr")
 
 [node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
 script = ExtResource("3_b7kd4")
 damage = 1
 
@@ -63,14 +65,12 @@ scale = Vector2(1.51951, 0.911612)
 amount = 20
 lifetime = 0.1
 texture = ExtResource("4_nnma8")
-direction = Vector2(0, -1)
+direction = Vector2(0, 0)
 spread = 30.0
 gravity = Vector2(0, -1000)
-initial_velocity_min = 191.49
-initial_velocity_max = 234.04
 angle_max = 360.0
-scale_amount_min = 0.1
-scale_amount_max = 0.3
+scale_amount_min = 0.08
+scale_amount_max = 0.2
 scale_amount_curve = SubResource("Curve_lskub")
 color_ramp = SubResource("Gradient_7cd0u")
 

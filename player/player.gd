@@ -20,7 +20,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var hp: int
 @export var score: int
 
-@onready var sprite = $Shape/SpriteMod/Sprite2D
+@onready var sprite = $Shape/SpriteMod/Lizard
 
 var last_on_ground = false
 
@@ -37,6 +37,11 @@ func _ready():
 
 func _process(delta):
 	sprite.self_modulate = color.lightened(.5)
+	sprite.get_node("Hat").frame = hat_to_texture(team)
+	sprite.get_node("Wings").self_modulate = color.lightened(.4)
+	var eye = sprite.get_node("Eye") as AnimatedSprite2D
+	eye.play("default" if $AttackCooldown.is_stopped() else "cross")
+	
 	for child in $Health.get_children():
 		if child is Sprite2D && child.name.is_valid_int():
 			child.visible = child.name.to_int() <= hp
@@ -47,7 +52,7 @@ func _process(delta):
 	
 	$Shape/WalkParticles.emitting = is_on_floor() and abs(velocity.x) > 10
 	
-	$Shape/SpriteMod/Sprite2D/Hat.texture = hat_to_texture(team)
+
 	
 	if fireball_count:
 		$Shape/Breath.emitting = fireball_count > 0
@@ -59,10 +64,6 @@ func spawn():
 	fireball_count = 3
 	global_position = get_tree().root.get_node("Game").get_random_spawn()
 
-@rpc("any_peer","call_local")
-func land_effect():
-	$Shape/LandParticles.restart()
-	$LandSound.play()
 
 func _physics_process(delta):
 	if not last_on_ground and is_on_floor():
@@ -72,9 +73,10 @@ func _physics_process(delta):
 	if not is_multiplayer_authority(): return
 	var jumping = Input.is_action_pressed("jump")
 	if is_on_floor():
-		$Jump.play()
 		if jumping:
+			$Jump.play()
 			velocity.y = -JUMP_HEIGHT
+			$Shape/SpriteMod.scale = Vector2(0.8, 1.2)
 	else:
 		var gravity_mod = 1.1 if velocity.y > 0 else 1.0
 		if not jumping: gravity_mod += 1 # for short hopping
@@ -103,9 +105,9 @@ func _physics_process(delta):
 	
 	if dir:
 		$Shape.scale = Vector2.RIGHT * (1 if dir > 0 else -1) + Vector2.DOWN
-		if not $AnimationPlayer.is_playing() and is_on_floor():
+		if (not $AnimationPlayer.is_playing() or $AnimationPlayer.current_animation == "idle") and is_on_floor():
 			$AnimationPlayer.play("hover")
-			$footsteps.play()
+			$Footsteps.play()
 	
 	if not $AnimationPlayer.is_playing():
 		$AnimationPlayer.play("idle")
@@ -115,6 +117,11 @@ func _physics_process(delta):
 @rpc("any_peer", "call_local")
 func attack_effect():
 	$SwordAttack.play()
+
+@rpc("any_peer","call_local")
+func land_effect():
+	$Shape/LandParticles.restart()
+	$LandSound.play()
 
 @rpc("call_local")
 func attack(at: Vector2, from_peer_id: int):
@@ -126,6 +133,7 @@ func attack(at: Vector2, from_peer_id: int):
 	
 @rpc("call_local")
 func shoot(at: Vector2, from_peer_id: int):
+	# todo use at
 	var bullet_scene = preload("res://player/bullet.tscn")
 	$Fireball.play()
 	for muzzle in $Shape/Muzzles.get_children():
@@ -173,18 +181,20 @@ func damage_effect():
 @rpc("any_peer", "call_local")
 func swap_team():
 	if is_multiplayer_authority():
+		var last = team
 		team = Hat.values().pick_random()
-		$SwapTeam.play()
+		if team != last:
+			$SwapTeam.play()
 		
 
-func hat_to_texture(hat: Hat) -> Texture2D:
+func hat_to_texture(hat: Hat) -> int:
 	if hat == Hat.ACAGAMICS:
-		return preload("res://textures/player/AcagamicsHut.png")
+		return 0
 	if hat == Hat.HORNS:
-		return preload("res://textures/player/GeweihHut.png")
+		return 1
 	if hat == Hat.TOP_HAT:
-		return preload("res://textures/player/ZylinderHut.png")
+		return 2
 	if hat == Hat.WITCHS_HAT:
-		return preload("res://textures/player/HexenHut.png")
+		return 3
 	printerr("add a condition here")
-	return null
+	return -1

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yrfaotnhkhid"
-path="res://.godot/imported/GeweihHut.png-e82b8560a9e0f61f09e6eda9c5a8fe44.ctex"
+uid="uid://737y30dympyl"
+path="res://.godot/imported/wing_1.png-a4f10aa64fcddc5732a861e4532bf6e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/player/GeweihHut.png"
-dest_files=["res://.godot/imported/GeweihHut.png-e82b8560a9e0f61f09e6eda9c5a8fe44.ctex"]
+source_file="res://textures/player/wing/wing_1.png"
+dest_files=["res://.godot/imported/wing_1.png-a4f10aa64fcddc5732a861e4532bf6e5.ctex"]
 
 [params]
 

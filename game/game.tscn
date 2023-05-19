@@ -65,7 +65,7 @@ script = ExtResource("1_7bnle")
 [node name="Network" type="Node" parent="."]
 
 [node name="Enemy" parent="Network" instance=ExtResource("2_bw475")]
-position = Vector2(215, -860)
+position = Vector2(215, -3383)
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://player/player.tscn", "res://player/hurtbox.tscn", "res://player/bullet.tscn", "res://enemy/enemy.tscn")
@@ -76,7 +76,6 @@ process_mode = 3
 initial_position = 1
 title = "Master"
 size = Vector2i(640, 480)
-visible = false
 borderless = true
 
 [node name="CenterContainer" type="CenterContainer" parent="MasterPopup"]
@@ -86,6 +85,7 @@ offset_right = 636.0
 offset_bottom = 476.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MasterPopup/CenterContainer"]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MasterPopup/CenterContainer/VBoxContainer"]
@@ -135,17 +135,41 @@ layout_mode = 2
 layout_mode = 2
 text = "Credits"
 
+[node name="FullscreenCheck" type="CheckButton" parent="MasterPopup/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Fullscreen"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MasterPopup/CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MasterPopup/CenterContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Audio Volume"
+vertical_alignment = 1
+
+[node name="AudioVolumeSlider" type="HSlider" parent="MasterPopup/CenterContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+value = 1.0
+
 [node name="Credits Popup" type="Popup" parent="."]
+process_mode = 3
 initial_position = 1
-size = Vector2i(640, 480)
+size = Vector2i(332, 388)
 
 [node name="CenterContainer" type="CenterContainer" parent="Credits Popup"]
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 636.0
-offset_bottom = 476.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Credits Popup/CenterContainer"]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 alignment = 1
 
@@ -166,16 +190,6 @@ Sarah
 Christian"
 
 [node name="HSeparator" type="HSeparator" parent="Credits Popup/CenterContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Resources" type="Label" parent="Credits Popup/CenterContainer/VBoxContainer"]
-layout_mode = 2
-text = "Resources"
-
-[node name="HSeparator3" type="HSeparator" parent="Credits Popup/CenterContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Sources" type="Label" parent="Credits Popup/CenterContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="Close Popup" type="Button" parent="Credits Popup/CenterContainer/VBoxContainer"]
@@ -202,8 +216,7 @@ position = Vector2(876, -244)
 position = Vector2(-1159, -1553)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-2229, -865)
-zoom = Vector2(0.439, 0.439)
+position = Vector2(-8, -705)
 limit_left = -2982
 limit_right = 3758
 limit_bottom = 0
@@ -212,6 +225,8 @@ position_smoothing_speed = 8.0
 script = ExtResource("3_3s4u8")
 
 [node name="DeathArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
 script = ExtResource("4_2irw5")
 damage = 9999
 remove_on_damage = false
@@ -231,41 +246,40 @@ sprite_frames = SubResource("SpriteFrames_mrnqe")
 autoplay = "default"
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-scroll_ignore_camera_zoom = true
+offset = Vector2(960, 540)
+transform = Transform2D(1, 0, 0, 1, 960, 540)
 
 [node name="Sky" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(1, 0)
 motion_scale = Vector2(0, 0)
 
 [node name="Background" type="Sprite2D" parent="ParallaxBackground/Sky"]
-position = Vector2(576.889, 323.5)
-scale = Vector2(0.597222, 0.597222)
 texture = ExtResource("5_jwoyd")
 
 [node name="Clouds" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(-960, -538)
 motion_scale = Vector2(0.1, 0.1)
 
 [node name="Cloud1" type="Sprite2D" parent="ParallaxBackground/Clouds"]
-position = Vector2(-24, 466)
+position = Vector2(-703.245, -112.618)
 scale = Vector2(1.261, 1.261)
 texture = ExtResource("6_q5ob3")
 
 [node name="Cloud2" type="Sprite2D" parent="ParallaxBackground/Clouds"]
-position = Vector2(318, 188)
+position = Vector2(-361.245, -390.619)
 scale = Vector2(1.261, 1.261)
 texture = ExtResource("7_2qkhw")
 
 [node name="Cloud3" type="Sprite2D" parent="ParallaxBackground/Clouds"]
-position = Vector2(1263, 368)
+position = Vector2(583.755, -210.618)
 scale = Vector2(1.261, 1.261)
 texture = ExtResource("8_stbfd")
 
 [node name="Background" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.2, 0.2)
+motion_offset = Vector2(0, -220)
 
 [node name="Volcano1" type="AnimatedSprite2D" parent="ParallaxBackground/Background"]
-position = Vector2(583, 66)
-scale = Vector2(0.340509, 0.340509)
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_mbfh5")
 autoplay = "default"
 frame_progress = 0.437651
@@ -274,31 +288,31 @@ frame_progress = 0.437651
 motion_scale = Vector2(0.3, 0.3)
 
 [node name="Cloud1" type="Sprite2D" parent="ParallaxBackground/Clouds2"]
-position = Vector2(-331, -225)
+position = Vector2(-1480.5, -903.5)
 texture = ExtResource("6_q5ob3")
 
 [node name="Cloud2" type="Sprite2D" parent="ParallaxBackground/Clouds2"]
-position = Vector2(617, -125)
+position = Vector2(-532.5, -803.5)
 texture = ExtResource("7_2qkhw")
 
 [node name="Cloud3" type="Sprite2D" parent="ParallaxBackground/Clouds2"]
-position = Vector2(1536, -166)
+position = Vector2(386.5, -844.5)
 texture = ExtResource("8_stbfd")
 
 [node name="Clouds3" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.35, 0.35)
+motion_scale = Vector2(0.4, 0.4)
 
 [node name="Cloud1" type="Sprite2D" parent="ParallaxBackground/Clouds3"]
-position = Vector2(691, -574)
+position = Vector2(284.042, -1239.57)
 scale = Vector2(0.944946, 0.96185)
 texture = ExtResource("6_q5ob3")
 
 [node name="Cloud2" type="Sprite2D" parent="ParallaxBackground/Clouds3"]
-position = Vector2(1492, -513)
+position = Vector2(1085.04, -1178.57)
 texture = ExtResource("7_2qkhw")
 
 [node name="Cloud3" type="Sprite2D" parent="ParallaxBackground/Clouds3"]
-position = Vector2(-255, -575)
+position = Vector2(-661.958, -1240.57)
 scale = Vector2(0.613701, 0.613701)
 texture = ExtResource("8_stbfd")
 
@@ -339,4 +353,6 @@ autoplay = true
 [connection signal="pressed" from="MasterPopup/CenterContainer/VBoxContainer/JoinServer" to="." method="_on_connect_pressed"]
 [connection signal="pressed" from="MasterPopup/CenterContainer/VBoxContainer/CreateServer" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="MasterPopup/CenterContainer/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="toggled" from="MasterPopup/CenterContainer/VBoxContainer/FullscreenCheck" to="." method="_on_fullscreen_check_toggled"]
+[connection signal="drag_ended" from="MasterPopup/CenterContainer/VBoxContainer/HBoxContainer2/AudioVolumeSlider" to="." method="_on_audio_volume_slider_drag_ended"]
 [connection signal="pressed" from="Credits Popup/CenterContainer/VBoxContainer/Close Popup" to="." method="_on_close_popup_pressed"]
