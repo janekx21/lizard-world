@@ -25,6 +25,7 @@
 [ext_resource type="AudioStream" uid="uid://eo601h1i7ch6" path="res://sounds/eingesprochen/feuerball.ogg" id="12_rk6wj"]
 [ext_resource type="AudioStream" uid="uid://cog4wrji11nt4" path="res://sounds/eingesprochen/huepf.ogg" id="13_p4513"]
 [ext_resource type="AudioStream" uid="uid://bxobllvl5pso3" path="res://sounds/eingesprochen/wechsel.ogg" id="14_14yls"]
+[ext_resource type="AudioStream" uid="uid://b105v7xvybqpl" path="res://sounds/eingesprochen/tod.ogg" id="15_xdkb4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cyigu"]
 radius = 42.0
@@ -416,5 +417,10 @@ stream = ExtResource("13_p4513")
 
 [node name="SwapTeam" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("14_14yls")
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Kill" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_xdkb4")
 
 [connection signal="area_entered" from="Shape/Hitbox" to="." method="hitbox_entered"]
