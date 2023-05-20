@@ -82,7 +82,7 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 20.0,
+"duration": 10.0,
 "texture": ExtResource("10_iasfq")
 }, {
 "duration": 1.0,
@@ -260,7 +260,7 @@ position = Vector2(-5, -59)
 texture = ExtResource("3_gj45r")
 
 [node name="Hat" type="AnimatedSprite2D" parent="Shape/SpriteMod/Lizard"]
-position = Vector2(-17.9999, -74)
+position = Vector2(-17, -79)
 scale = Vector2(0.238778, 0.238778)
 sprite_frames = SubResource("SpriteFrames_c0op7")
 
@@ -274,7 +274,6 @@ flip_h = true
 [node name="Eye" type="AnimatedSprite2D" parent="Shape/SpriteMod/Lizard"]
 position = Vector2(15, -41)
 sprite_frames = SubResource("SpriteFrames_51egm")
-animation = &"cross"
 autoplay = "default"
 flip_h = true
 
@@ -287,7 +286,7 @@ collision_mask = 8
 shape = SubResource("CircleShape2D_raog1")
 
 [node name="HurtboxPoint" type="Marker2D" parent="Shape"]
-position = Vector2(127, 0)
+position = Vector2(74, 0)
 
 [node name="WalkParticles" type="CPUParticles2D" parent="Shape"]
 z_index = -1

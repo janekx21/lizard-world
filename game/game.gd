@@ -90,6 +90,7 @@ func _on_fullscreen_check_toggled(button_pressed):
 	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN if button_pressed else DisplayServer.WINDOW_MODE_WINDOWED)
 
 func _on_audio_volume_slider_drag_ended(value_changed: bool):
+	if not value_changed: return
 	var slider = $MasterPopup/CenterContainer/VBoxContainer/HBoxContainer2/AudioVolumeSlider
 	var db = remap(sqrt(slider.value), 0, 1, -80, 0)
 	AudioServer.set_bus_volume_db(0, db)

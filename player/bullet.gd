@@ -8,6 +8,7 @@ func set_origin(id: int):
 	$Hurtbox.origin_peer_id = id
 
 func _physics_process(delta):
+	if not is_multiplayer_authority(): return
 	velocity.y += gravity * delta
 	rotation = velocity.angle()
 	

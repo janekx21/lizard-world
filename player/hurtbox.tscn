@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://player/hurtbox.gd" id="1_u6gpb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qnb5v"]
-size = Vector2(165, 158)
+size = Vector2(159, 158)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_d7s2n"]
 properties/0/path = NodePath(".:position")

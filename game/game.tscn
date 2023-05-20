@@ -78,6 +78,7 @@ process_mode = 3
 initial_position = 1
 title = "Master"
 size = Vector2i(640, 600)
+visible = false
 borderless = true
 
 [node name="CenterContainer" type="CenterContainer" parent="MasterPopup"]
@@ -216,6 +217,18 @@ position = Vector2(876, -244)
 
 [node name="Marker2D3" type="Marker2D" parent="Spawns"]
 position = Vector2(-1159, -1553)
+
+[node name="Marker2D4" type="Marker2D" parent="Spawns"]
+position = Vector2(3049, -2086)
+
+[node name="Marker2D5" type="Marker2D" parent="Spawns"]
+position = Vector2(469, -1900)
+
+[node name="Marker2D6" type="Marker2D" parent="Spawns"]
+position = Vector2(3127, -535)
+
+[node name="Marker2D7" type="Marker2D" parent="Spawns"]
+position = Vector2(-2363, -1289)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-8, -705)

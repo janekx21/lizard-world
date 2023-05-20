@@ -96,7 +96,10 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("shoot") && fireball_count > 0:
 		if $AttackCooldown.is_stopped():
-			shoot.rpc_id(1, $Shape/HurtboxPoint.global_position, multiplayer.get_unique_id())
+			for muzzle in $Shape/Muzzles.get_children():
+				var t = (muzzle as Node2D).global_transform
+				shoot.rpc_id(1, t.origin, t.x, multiplayer.get_unique_id())
+			shoot_effect.rpc()
 			$AttackCooldown.start(0.5)
 			fireball_count -= 1
 			if fireball_count <= 0:
@@ -131,19 +134,19 @@ func attack(at: Vector2, from_peer_id: int):
 	hurtbox.origin_peer_id = from_peer_id
 	hurtbox.damage = 1
 	find_parent("Network").add_child(hurtbox, true)
-	
+
 @rpc("call_local")
-func shoot(at: Vector2, from_peer_id: int):
-	# todo use at
-	var bullet_scene = preload("res://player/bullet.tscn")
+func shoot(at: Vector2, direction: Vector2, from_peer_id: int):
+	var bullet = preload("res://player/bullet.tscn").instantiate()
+	find_parent("Network").add_child(bullet, true)
+	bullet.get_node("Sprite2D").set_flip_v($Shape.get_scale().x < 0)
+	bullet.velocity = direction * 1500
+	bullet.global_position = at
+	bullet.set_origin(from_peer_id)
+
+@rpc("call_local", "any_peer")
+func shoot_effect():
 	$Fireball.play()
-	for muzzle in $Shape/Muzzles.get_children():
-		var bullet = bullet_scene.instantiate()
-		find_parent("Network").add_child(bullet, true)
-		bullet.get_node("Sprite2D").set_flip_v($Shape.get_scale().x < 0)
-		bullet.velocity = Vector2(1500, 0).rotated(muzzle.rotation) * $Shape.scale
-		bullet.global_position = muzzle.global_position
-		bullet.set_origin(from_peer_id)
 	
 func hitbox_entered(area: Area2D):
 	if not is_multiplayer_authority(): return
@@ -152,12 +155,15 @@ func hitbox_entered(area: Area2D):
 	var hurtbox = area as Hurtbox
 	var other = hurtbox.get_player()
 	if other && other.team == team: return
-	get_damage(hurtbox.damage, other)
+	var direction = (global_position - area.global_position).normalized()
+	direction = lerp(direction, Vector2.UP, 0.3)
+	get_damage(hurtbox.damage, other, direction)
 	if hurtbox.remove_on_damage: hurtbox.remove.rpc_id(1)
 
-func get_damage(damage: int, player: Player):
+func get_damage(damage: int, player: Player, direction: Vector2):
 	damage_effect.rpc()
 	hp -= damage
+	velocity += direction * 2000
 	if hp <= 0:
 		if player:
 			player.award_kill.rpc_id(player.get_id(), 5)
