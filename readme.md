@@ -8,13 +8,13 @@
 <br />
 <div align="center">
   <a href="https://github.com/janekx21/lizard-world">
-    <img src="textures/logo.png" alt="Logo" width="80" height="80">
+    <img src="textures/logo.png" alt="Logo" width="300" height="224">
   </a>
 
 <h3 align="center">Lizard World</h3>
 
   <p align="center">
-    Multiplyer Game writen in Godot.
+    Multiplyer Game writen in Godot. At the Acagamics Summer Gamejam 2023 in Magdeburg.
     <br />
     <a href="https://github.com/janekx21/lizard-world"><strong>Explore the docs »</strong></a>
     <br />
@@ -36,15 +36,13 @@
 
 ### Built With
 
-* [![Godot][Godot]][Godot-url]
+[![Godot][Godot]][Godot-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 <!-- GETTING STARTED -->
 ## Getting Started
-
-TODO
 
 ### Prerequisites
 
