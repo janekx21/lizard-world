@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://c44kg1gkvu546"]
+
+[ext_resource type="Texture2D" uid="uid://bgad7g0mbpbq1" path="res://textures/splashes/splat25.png" id="1_3ap5y"]
+[ext_resource type="Script" path="res://particles/OneTimeParticle.gd" id="2_6eoqi"]
+[ext_resource type="AudioStream" uid="uid://bk3fwko6uvu1j" path="res://sounds/burning_match_into_water.ogg" id="3_tsx7n"]
+[ext_resource type="Script" path="res://particles/RandomPitch.gd" id="4_5y3s0"]
+
+[sub_resource type="Curve" id="Curve_d2s5j"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.513595, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="PutOutFlame" type="CPUParticles2D"]
+z_index = -1
+amount = 10
+lifetime = 0.4
+explosiveness = 0.91
+randomness = 0.86
+lifetime_randomness = 0.52
+texture = ExtResource("1_3ap5y")
+emission_shape = 1
+emission_sphere_radius = 20.0
+direction = Vector2(0, -1)
+spread = 120.85
+gravity = Vector2(0, -400)
+initial_velocity_min = 163.24
+initial_velocity_max = 220.39
+damping_min = 600.0
+damping_max = 700.0
+angle_max = 720.0
+scale_amount_min = 0.1
+scale_amount_max = 0.3
+scale_amount_curve = SubResource("Curve_d2s5j")
+color = Color(0.92549, 0.92549, 0.92549, 1)
+script = ExtResource("2_6eoqi")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_tsx7n")
+autoplay = true
+script = ExtResource("4_5y3s0")

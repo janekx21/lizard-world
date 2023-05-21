@@ -39,6 +39,8 @@ func _process(delta):
 	sprite.self_modulate = color.lightened(.5)
 	sprite.get_node("Hat").frame = hat_to_texture(team)
 	sprite.get_node("Wings").self_modulate = color.lightened(.4)
+	sprite.get_node("Hand/Sword").self_modulate = color.lightened(.8)
+	
 	var eye = sprite.get_node("Eye") as AnimatedSprite2D
 	eye.play("default" if $AttackCooldown.is_stopped() else "cross")
 	
@@ -46,11 +48,11 @@ func _process(delta):
 		if child is Sprite2D && child.name.is_valid_int():
 			child.visible = child.name.to_int() <= hp
 	
-	var vel = abs(velocity/SPEED).clamp(-Vector2.ONE, Vector2.ONE)
+	var vel = abs(get_real_velocity()/SPEED).clamp(-Vector2.ONE, Vector2.ONE)
 	vel = (Vector2.ONE + vel * 0.2).normalized() * 1.41
 	$Shape/SpriteMod.scale = $Shape/SpriteMod.scale.move_toward(vel, delta)
 	
-	$Shape/WalkParticles.emitting = is_on_floor() and abs(velocity.x) > 10
+	$Shape/WalkParticles.emitting = is_on_floor() and abs(get_real_velocity().x) > 10
 	
 
 	
@@ -108,7 +110,7 @@ func _physics_process(delta):
 	
 	if dir:
 		$Shape.scale = Vector2.RIGHT * (1 if dir > 0 else -1) + Vector2.DOWN
-		if (not $AnimationPlayer.is_playing() or $AnimationPlayer.current_animation == "idle") and is_on_floor():
+		if (not $AnimationPlayer.is_playing() or $AnimationPlayer.current_animation == "idle") and is_on_floor() and get_real_velocity().abs().x > 10:
 			$AnimationPlayer.play("hover")
 			$Footsteps.play()
 	
@@ -189,10 +191,11 @@ func damage_effect():
 @rpc("any_peer", "call_local")
 func swap_team():
 	if is_multiplayer_authority():
+		if randi_range(1, 3) != 1: return # 33% chance for a swap
 		var last = team
 		team = Hat.values().pick_random()
-		if team != last:
-			$SwapTeam.play()
+		if team == last: return # 25% chance for the same team
+		$SwapTeam.play()
 		
 
 func hat_to_texture(hat: Hat) -> int:

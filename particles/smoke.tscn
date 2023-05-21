@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cek8w7qlonou0"]
+[gd_scene load_steps=5 format=3 uid="uid://crd2eolutvdjf"]
 
-[ext_resource type="Texture2D" uid="uid://coxa5fh5vwl3a" path="res://textures/environment/black_smoke/blackSmoke00.png" id="1_3iufc"]
+[ext_resource type="Texture2D" uid="uid://rngv0cskq8wq" path="res://textures/environment/black_smoke/blackSmoke00.png" id="1_3iufc"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_q4xh6"]
 resource_name = "smoke_material"

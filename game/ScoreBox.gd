@@ -9,4 +9,5 @@ func render_score(players: Array[Player]):
 		var label = Label.new()
 		label.self_modulate = player.color
 		label.text = str(player.score)
+		label.theme = preload("res://game/ScoreLabel.tres")
 		add_child(label)

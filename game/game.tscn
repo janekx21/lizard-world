@@ -1,7 +1,6 @@
 [gd_scene load_steps=27 format=3 uid="uid://c5iknbtcn5etf"]
 
 [ext_resource type="Script" path="res://game/game.gd" id="1_7bnle"]
-[ext_resource type="PackedScene" uid="uid://ciu4ggg11cq10" path="res://enemy/enemy.tscn" id="2_bw475"]
 [ext_resource type="Texture2D" uid="uid://bd7gohrv8hevy" path="res://textures/player/logo.png" id="3_0qts3"]
 [ext_resource type="Script" path="res://game/CameraFollow.gd" id="3_3s4u8"]
 [ext_resource type="Script" path="res://player/hurtbox.gd" id="4_2irw5"]
@@ -19,6 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://cknmsmbj53que" path="res://sounds/click_001.ogg" id="15_wlp73"]
 [ext_resource type="Script" path="res://game/ScoreBox.gd" id="16_aysn4"]
 [ext_resource type="AudioStream" uid="uid://c52g0hg1dujwk" path="res://sounds/lavaLoop.ogg" id="16_ky4sk"]
+[ext_resource type="Theme" uid="uid://bruntrmf8p014" path="res://game/ScoreLabel.tres" id="18_65fa0"]
 [ext_resource type="AudioStream" uid="uid://cfukmreyb165u" path="res://sounds/eingesprochen/hallo.ogg" id="18_ui3ql"]
 [ext_resource type="AudioStream" uid="uid://ct3mjixu4tm7j" path="res://sounds/bg_music.ogg" id="19_8ba5q"]
 [ext_resource type="AudioStream" uid="uid://cjw5u1xbt4xdu" path="res://sounds/eingesprochen/tschuess.ogg" id="22_3sur2"]
@@ -65,9 +65,6 @@ animations = [{
 script = ExtResource("1_7bnle")
 
 [node name="Network" type="Node" parent="."]
-
-[node name="Enemy" parent="Network" instance=ExtResource("2_bw475")]
-position = Vector2(215, -3383)
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://player/player.tscn", "res://player/hurtbox.tscn", "res://player/bullet.tscn", "res://enemy/enemy.tscn")
@@ -350,7 +347,15 @@ script = ExtResource("16_aysn4")
 
 [node name="Label" type="Label" parent="CanvasLayer/UI/ScoreBox"]
 layout_mode = 2
-text = "Hello World"
+theme = ExtResource("18_65fa0")
+text = "0
+"
+
+[node name="Label2" type="Label" parent="CanvasLayer/UI/ScoreBox"]
+layout_mode = 2
+theme = ExtResource("18_65fa0")
+text = "0
+"
 
 [node name="LavaLoop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_ky4sk")

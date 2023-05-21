@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://shaqdqaif8bv"]
+[gd_scene load_steps=45 format=3 uid="uid://shaqdqaif8bv"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_w4ivo"]
 [ext_resource type="Texture2D" uid="uid://byqkjsds5nl40" path="res://textures/player/hats/ZylinderHut.png" id="3_32oe2"]
@@ -19,13 +19,16 @@
 [ext_resource type="Texture2D" uid="uid://pg4si5nvkpjn" path="res://textures/player/eye.png" id="10_iasfq"]
 [ext_resource type="Texture2D" uid="uid://de7fw84d18bin" path="res://textures/player/eye_crossed.png" id="10_iugfm"]
 [ext_resource type="Texture2D" uid="uid://cs6mpod1nap2a" path="res://textures/player/wing/wing_2.png" id="10_pcwgx"]
-[ext_resource type="AudioStream" uid="uid://ddth7y08qeer5" path="res://sounds/eingesprochen/lauf.ogg" id="10_v1oxb"]
 [ext_resource type="Texture2D" uid="uid://cgicy0u0gva6u" path="res://textures/player/eye_closed.png" id="11_mj3x3"]
 [ext_resource type="AudioStream" uid="uid://0daj0a702qph" path="res://sounds/eingesprochen/landen.ogg" id="11_tnci7"]
 [ext_resource type="AudioStream" uid="uid://eo601h1i7ch6" path="res://sounds/eingesprochen/feuerball.ogg" id="12_rk6wj"]
 [ext_resource type="AudioStream" uid="uid://cog4wrji11nt4" path="res://sounds/eingesprochen/huepf.ogg" id="13_p4513"]
 [ext_resource type="AudioStream" uid="uid://bxobllvl5pso3" path="res://sounds/eingesprochen/wechsel.ogg" id="14_14yls"]
 [ext_resource type="AudioStream" uid="uid://b105v7xvybqpl" path="res://sounds/eingesprochen/tod.ogg" id="15_xdkb4"]
+[ext_resource type="Script" path="res://particles/RandomPitch.gd" id="20_nf2gy"]
+[ext_resource type="AudioStream" uid="uid://j021a23c51hq" path="res://sounds/walk_one.ogg" id="22_g66kh"]
+[ext_resource type="Script" path="res://player/RandomSound.gd" id="23_x6ygt"]
+[ext_resource type="AudioStream" uid="uid://dcaorr04mbg2e" path="res://sounds/walk_2.ogg" id="24_s1ayy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cyigu"]
 radius = 42.0
@@ -398,28 +401,38 @@ libraries = {
 
 [node name="SwordAttack" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_n0y1f")
+script = ExtResource("20_nf2gy")
 
 [node name="BloodSplash" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_78y6v")
+script = ExtResource("20_nf2gy")
 
 [node name="Footsteps" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("10_v1oxb")
+stream = ExtResource("22_g66kh")
+script = ExtResource("23_x6ygt")
+sounds = Array[AudioStream]([ExtResource("22_g66kh"), ExtResource("24_s1ayy")])
 
 [node name="LandSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_tnci7")
+script = ExtResource("20_nf2gy")
 
 [node name="Fireball" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_rk6wj")
+script = ExtResource("20_nf2gy")
 
 [node name="Jump" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("13_p4513")
+script = ExtResource("20_nf2gy")
 
 [node name="SwapTeam" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("14_14yls")
+script = ExtResource("20_nf2gy")
 
 [node name="Hit" type="AudioStreamPlayer2D" parent="."]
+script = ExtResource("20_nf2gy")
 
 [node name="Kill" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("15_xdkb4")
+script = ExtResource("20_nf2gy")
 
 [connection signal="area_entered" from="Shape/Hitbox" to="." method="hitbox_entered"]

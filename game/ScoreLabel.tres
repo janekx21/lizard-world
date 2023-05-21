@@ -1,0 +1,25 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bruntrmf8p014"]
+
+[ext_resource type="FontFile" uid="uid://wrjo824djrai" path="res://sobatyan.regular.otf" id="1_1suwv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p60v0"]
+bg_color = Color(0.0509804, 0.0509804, 0.0509804, 1)
+skew = Vector2(0.285, 0)
+border_width_left = 20
+border_width_top = 10
+border_width_right = 20
+border_width_bottom = 10
+border_color = Color(0.282353, 0.282353, 0.282353, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 6
+shadow_color = Color(0, 0, 0, 0.192157)
+shadow_size = 14
+
+[resource]
+Label/font_sizes/font_size = 64
+Label/fonts/font = ExtResource("1_1suwv")
+Label/styles/normal = SubResource("StyleBoxFlat_p60v0")
