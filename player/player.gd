@@ -1,8 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
-const SPEED = 1200
-const ACCELL = 17000
+const SPEED = 1000
+const ACCELL = 5000#17000
 const JUMP_HEIGHT = 1800
 
 enum Hat {
@@ -15,12 +15,14 @@ enum Hat {
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @export var color: Color = [Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW, Color.VIOLET, Color.CYAN, Color.ORANGE, Color.OLIVE, Color.DARK_RED, Color.NAVY_BLUE].pick_random()
-@export var team: Hat = Hat.values().pick_random()
+@export var team: Hat = Hat.values().pick_random() #  Hat.ACAGAMICS#
 @export var fireball_count = 3
 @export var hp: int
 @export var score: int
 
 @onready var sprite = $Shape/SpriteMod/Lizard
+
+@export var hat_sprites: Dictionary[Hat,Sprite2D]
 
 var last_on_ground = false
 
@@ -37,7 +39,8 @@ func _ready():
 
 func _process(delta):
 	sprite.self_modulate = color.lightened(.5)
-	sprite.get_node("Hat").frame = hat_to_texture(team)
+	#sprite.get_node("Hat").frame = hat_to_texture(team)
+	set_hat(team)
 	sprite.get_node("Wings").self_modulate = color.lightened(.4)
 	sprite.get_node("Hand/Sword").self_modulate = color.lightened(.8)
 	
@@ -85,16 +88,17 @@ func _physics_process(delta):
 		velocity.y += gravity * delta * gravity_mod
 	
 	var dir = Input.get_axis("move_left","move_right")
-	var accell_mod = 1.0 if is_on_floor() else 0.5 # air accelerate
+	var accell_mod = 1.0 if is_on_floor() else 0.6 # air accelerate
 	var speed_mod = 1.0 if $AttackCooldown.is_stopped() else 0.5
 	velocity.x = move_toward(velocity.x, dir * SPEED * speed_mod, ACCELL * delta * accell_mod)
 	
 	if Input.is_action_just_pressed("attack"):
 		if $AttackCooldown.is_stopped():
-			attack.rpc_id(1, $Shape/HurtboxPoint.global_position, multiplayer.get_unique_id())
-			$AttackCooldown.start(0.2)
+			start_attack()
+			$AttackCooldown.start(0.3)
 			$AnimationPlayer.play("attack")
 			attack_effect.rpc()
+			
 	
 	if Input.is_action_just_pressed("shoot") && fireball_count > 0:
 		if $AttackCooldown.is_stopped():
@@ -112,12 +116,16 @@ func _physics_process(delta):
 		$Shape.scale = Vector2.RIGHT * (1 if dir > 0 else -1) + Vector2.DOWN
 		if (not $AnimationPlayer.is_playing() or $AnimationPlayer.current_animation == "idle") and is_on_floor() and get_real_velocity().abs().x > 10:
 			$AnimationPlayer.play("hover")
-			$Footsteps.play()
+			#$Footsteps.play()
 	
 	if not $AnimationPlayer.is_playing():
 		$AnimationPlayer.play("idle")
 	
 	move_and_slide()
+
+func start_attack():
+	await get_tree().create_timer(0.1).timeout
+	attack.rpc_id(1, $Shape/HurtboxPoint.global_position, $Shape.scale, multiplayer.get_unique_id())
 
 @rpc("any_peer", "call_local")
 func attack_effect():
@@ -129,10 +137,11 @@ func land_effect():
 	$LandSound.play()
 
 @rpc("call_local")
-func attack(at: Vector2, from_peer_id: int):
+func attack(at: Vector2, scale: Vector2, from_peer_id: int):
 	$Hit.play()
 	var hurtbox = preload("res://player/hurtbox.tscn").instantiate()
 	hurtbox.global_position = at
+	hurtbox.scale = scale #Vector2(sign(scale.x), 1)
 	hurtbox.origin_peer_id = from_peer_id
 	hurtbox.damage = 1
 	find_parent("Network").add_child(hurtbox, true)
@@ -158,14 +167,14 @@ func hitbox_entered(area: Area2D):
 	var other = hurtbox.get_player()
 	if other && other.team == team: return
 	var direction = (global_position - area.global_position).normalized()
-	direction = lerp(direction, Vector2.UP, 0.3)
+	direction = lerp(direction, Vector2.UP, 0.5)
 	get_damage(hurtbox.damage, other, direction)
 	if hurtbox.remove_on_damage: hurtbox.remove.rpc_id(1)
 
 func get_damage(damage: int, player: Player, direction: Vector2):
 	damage_effect.rpc()
 	hp -= damage
-	velocity += direction * 2000
+	velocity += direction * 3000
 	if hp <= 0:
 		if player:
 			player.award_kill.rpc_id(player.get_id(), 5)
@@ -209,3 +218,7 @@ func hat_to_texture(hat: Hat) -> int:
 		return 3
 	printerr("add a condition here")
 	return -1
+
+func set_hat(hat: Hat):
+	for key in hat_sprites:
+		hat_sprites[key].visible = hat == key

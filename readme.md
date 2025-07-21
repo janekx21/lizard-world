@@ -8,22 +8,22 @@
 <br />
 <div align="center">
   <a href="https://github.com/janekx21/lizard-world">
-    <img src="textures/logo.png" alt="Logo" width="300" height="224">
+	<img src="textures/logo.png" alt="Logo" width="300" height="224">
   </a>
 
 <h3 align="center">Lizard World</h3>
 
   <p align="center">
-    Multiplyer Game writen in Godot. At the Acagamics Summer Gamejam 2023 in Magdeburg.
-    <br />
-    <a href="https://github.com/janekx21/lizard-world"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/janekx21/lizard-world">View Demo</a>
-    ·
-    <a href="https://github.com/janekx21/lizard-world/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/janekx21/lizard-world/issues">Request Feature</a>
+	Multiplyer Game writen in Godot. At the Acagamics Summer Gamejam 2023 in Magdeburg.
+	<br />
+	<a href="https://github.com/janekx21/lizard-world"><strong>Explore the docs »</strong></a>
+	<br />
+	<br />
+	<a href="https://github.com/janekx21/lizard-world">View Demo</a>
+	·
+	<a href="https://github.com/janekx21/lizard-world/issues">Report Bug</a>
+	·
+	<a href="https://github.com/janekx21/lizard-world/issues">Request Feature</a>
   </p>
 </div>
 
@@ -103,4 +103,3 @@ Not decided
 [product-screenshot]: screenshots/Screenshot_20230521_174327.png
 [Godot]: https://img.shields.io/badge/Godot-202630?style=for-the-badge&logo=godotengine&logoColor=478CBF
 [Godot-url]: https://godotengine.org/
-

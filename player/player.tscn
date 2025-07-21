@@ -1,6 +1,6 @@
-[gd_scene load_steps=45 format=3 uid="uid://shaqdqaif8bv"]
+[gd_scene load_steps=56 format=3 uid="uid://shaqdqaif8bv"]
 
-[ext_resource type="Script" path="res://player/player.gd" id="1_w4ivo"]
+[ext_resource type="Script" uid="uid://dru7tsedcd3tn" path="res://player/player.gd" id="1_w4ivo"]
 [ext_resource type="Texture2D" uid="uid://byqkjsds5nl40" path="res://textures/player/hats/ZylinderHut.png" id="3_32oe2"]
 [ext_resource type="Texture2D" uid="uid://b0gxhompdbst6" path="res://textures/player/sword.png" id="3_gj45r"]
 [ext_resource type="Texture2D" uid="uid://cpao1h5p40ec8" path="res://textures/player/sword_blurred.png" id="3_lwv4t"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dvrktfs18uv7u" path="res://textures/splashes/splat13.png" id="4_qsx8m"]
 [ext_resource type="Texture2D" uid="uid://bkca6v2tdxlxp" path="res://textures/splashes/splat08.png" id="5_jur31"]
 [ext_resource type="Texture2D" uid="uid://yrfaotnhkhid" path="res://textures/player/hats/GeweihHut.png" id="5_ka5li"]
+[ext_resource type="Texture2D" uid="uid://ctbhdy6i2h211" path="res://textures/particles/circle_05.png" id="5_r7pn3"]
 [ext_resource type="Texture2D" uid="uid://yujb2tu73p1e" path="res://textures/player/hats/HexenHut.png" id="6_00jtg"]
 [ext_resource type="Texture2D" uid="uid://cp1cvy5wkayrn" path="res://textures/splashes/splat34.png" id="6_fmi01"]
 [ext_resource type="Texture2D" uid="uid://d0watl71w50ya" path="res://textures/player/zahn.png" id="7_1a56r"]
@@ -15,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://4qwlnjtjpqjn" path="res://textures/player/wing/wing_0.png" id="8_661sd"]
 [ext_resource type="AudioStream" uid="uid://c2u5gicqmpyu1" path="res://sounds/eingesprochen/schlag.ogg" id="8_n0y1f"]
 [ext_resource type="AudioStream" uid="uid://cl81aykvsocc5" path="res://sounds/eingesprochen/spritz.ogg" id="9_78y6v"]
+[ext_resource type="Script" uid="uid://gfuuhfsp8yo4" path="res://player/acagamics_hat_line.gd" id="9_b8hi5"]
 [ext_resource type="Texture2D" uid="uid://737y30dympyl" path="res://textures/player/wing/wing_1.png" id="9_gh3r0"]
 [ext_resource type="Texture2D" uid="uid://pg4si5nvkpjn" path="res://textures/player/eye.png" id="10_iasfq"]
 [ext_resource type="Texture2D" uid="uid://de7fw84d18bin" path="res://textures/player/eye_crossed.png" id="10_iugfm"]
@@ -25,34 +27,39 @@
 [ext_resource type="AudioStream" uid="uid://cog4wrji11nt4" path="res://sounds/eingesprochen/huepf.ogg" id="13_p4513"]
 [ext_resource type="AudioStream" uid="uid://bxobllvl5pso3" path="res://sounds/eingesprochen/wechsel.ogg" id="14_14yls"]
 [ext_resource type="AudioStream" uid="uid://b105v7xvybqpl" path="res://sounds/eingesprochen/tod.ogg" id="15_xdkb4"]
-[ext_resource type="Script" path="res://particles/RandomPitch.gd" id="20_nf2gy"]
+[ext_resource type="Script" uid="uid://dahjpwtyp0eqm" path="res://particles/RandomPitch.gd" id="20_nf2gy"]
 [ext_resource type="AudioStream" uid="uid://j021a23c51hq" path="res://sounds/walk_one.ogg" id="22_g66kh"]
-[ext_resource type="Script" path="res://player/RandomSound.gd" id="23_x6ygt"]
 [ext_resource type="AudioStream" uid="uid://dcaorr04mbg2e" path="res://sounds/walk_2.ogg" id="24_s1ayy"]
+[ext_resource type="Texture2D" uid="uid://cnd3vhsla67lc" path="res://textures/player/hats/hat_acagamics_end.png" id="31_2uvqg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cyigu"]
 radius = 42.0
 height = 156.0
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_c0op7"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_4ddmg")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_ka5li")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_00jtg")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_32oe2")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[sub_resource type="Curve" id="Curve_r7pn3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.03469, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_b8hi5"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.194529, 0), 0.0, 0.0, 0, 0, Vector2(0.331307, 1), 0.0, 0.0, 0, 0, Vector2(0.525836, 0), 0.0, 0.0, 0, 0, Vector2(0.650456, 1), 0.0, 0.0, 0, 0, Vector2(0.790274, 0.000605345), 0.0, 0.0, 0, 0, Vector2(0.899696, 1), 0.739709, 0.739709, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 8
+
+[sub_resource type="Curve" id="Curve_2uvqg"]
+_data = [Vector2(0, 0), 0.0, 0.0422445, 0, 0, Vector2(0.0516717, 1), 0.0, 0.0, 0, 0, Vector2(0.975684, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.204463, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_1s1yo"]
+offsets = PackedFloat32Array(0, 0.128713, 0.541254, 0.683168, 0.818482, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.325277, 0.803027, 0, 1, 0.372987, 0.816955, 0.0707106, 1, 0.923822, 0.977761, 0.887097, 1, 0.34763, 0.809552, 0.0331281, 1, 0.878896, 0.964646, 0.820513, 1)
+
+[sub_resource type="Gradient" id="Gradient_2uvqg"]
+colors = PackedColorArray(1, 0.704833, 0.23, 1, 1, 0.564706, 0.00392157, 1)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2uvqg"]
+friction = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b8hi5"]
+radius = 13.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qp0lu"]
 animations = [{
@@ -96,8 +103,9 @@ animations = [{
 "speed": 3.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_raog1"]
-radius = 62.0081
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2uvqg"]
+radius = 54.0
+height = 152.0
 
 [sub_resource type="Curve" id="Curve_p18bl"]
 _data = [Vector2(0, 0.490683), 0.0, 1.76592, 0, 0, Vector2(0.595149, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.722, 0.0, 0, 0]
@@ -122,38 +130,66 @@ point_count = 3
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7y5kg"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
-properties/0/sync = true
+properties/0/replication_mode = 1
 properties/1/path = NodePath("Shape:scale")
 properties/1/spawn = true
-properties/1/sync = true
+properties/1/replication_mode = 1
 properties/2/path = NodePath(".:team")
 properties/2/spawn = true
-properties/2/sync = true
+properties/2/replication_mode = 1
 properties/3/path = NodePath(".:hp")
 properties/3/spawn = true
-properties/3/sync = true
+properties/3/replication_mode = 1
 properties/4/path = NodePath("AnimationPlayer:current_animation")
 properties/4/spawn = true
-properties/4/sync = true
+properties/4/replication_mode = 1
 properties/5/path = NodePath("Shape/WalkParticles:emitting")
 properties/5/spawn = true
-properties/5/sync = true
+properties/5/replication_mode = 1
 properties/6/path = NodePath("Shape/LandParticles:emitting")
 properties/6/spawn = true
-properties/6/sync = true
+properties/6/replication_mode = 1
 properties/7/path = NodePath(".:color")
 properties/7/spawn = true
-properties/7/sync = true
+properties/7/replication_mode = 1
 properties/8/path = NodePath(".:fireball_count")
 properties/8/spawn = true
-properties/8/sync = true
+properties/8/replication_mode = 1
 properties/9/path = NodePath(".:score")
 properties/9/spawn = true
-properties/9/sync = true
+properties/9/replication_mode = 1
+
+[sub_resource type="Animation" id="Animation_r7pn3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteMod/Lizard:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2, -86)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteMod/Lizard/Hand/Sword:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_gj45r")]
+}
 
 [sub_resource type="Animation" id="Animation_2s83s"]
 resource_name = "attack"
 length = 0.2
+step = 0.0166667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -173,11 +209,30 @@ tracks/1/path = NodePath("SpriteMod/Lizard/Hand/Sword:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.0166667, 0.183333),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ExtResource("3_lwv4t"), ExtResource("3_gj45r")]
+"values": [ExtResource("3_gj45r"), ExtResource("3_lwv4t"), ExtResource("3_gj45r")]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpriteMod/Lizard:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2, -86)]
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rptt4"]
+random_pitch = 1.05
+random_volume_offset_db = 2.0
+streams_count = 2
+stream_0/stream = ExtResource("22_g66kh")
+stream_1/stream = ExtResource("24_s1ayy")
 
 [sub_resource type="Animation" id="Animation_0k6gl"]
 resource_name = "hover"
@@ -194,6 +249,33 @@ tracks/0/keys = {
 "points": PackedFloat32Array(-86, -0.01, 0, 0.01, 0, -116.5, -0.05, 0, 0.05, 2, -86, -0.01, 0, 0.01, 0),
 "times": PackedFloat32Array(0, 0.1, 0.2)
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteMod/Lizard/Hand/Sword:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_gj45r")]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Footsteps")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_rptt4")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
 
 [sub_resource type="Animation" id="Animation_vc1pg"]
 resource_name = "idle"
@@ -233,15 +315,25 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qcapg"]
 _data = {
-"attack": SubResource("Animation_2s83s"),
-"hover": SubResource("Animation_0k6gl"),
-"idle": SubResource("Animation_vc1pg")
+&"RESET": SubResource("Animation_r7pn3"),
+&"attack": SubResource("Animation_2s83s"),
+&"hover": SubResource("Animation_0k6gl"),
+&"idle": SubResource("Animation_vc1pg")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_2uvqg"]
+radius = 12.1655
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("hat_sprites")]
 collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_w4ivo")
+hat_sprites = {
+0: NodePath("Shape/SpriteMod/Lizard/AcagamicsHat"),
+1: NodePath("Shape/SpriteMod/Lizard/HornsHat"),
+2: NodePath("Shape/SpriteMod/Lizard/WhitchHat"),
+3: NodePath("Shape/SpriteMod/Lizard/ZylinderHat")
+}
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_cyigu")
@@ -262,10 +354,119 @@ z_index = -1
 position = Vector2(-5, -59)
 texture = ExtResource("3_gj45r")
 
-[node name="Hat" type="AnimatedSprite2D" parent="Shape/SpriteMod/Lizard"]
-position = Vector2(-17, -79)
-scale = Vector2(0.238778, 0.238778)
-sprite_frames = SubResource("SpriteFrames_c0op7")
+[node name="ZylinderHat" type="Sprite2D" parent="Shape/SpriteMod/Lizard"]
+visible = false
+position = Vector2(-18, -73)
+scale = Vector2(0.317766, 0.317766)
+texture = ExtResource("3_32oe2")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Shape/SpriteMod/Lizard/ZylinderHat"]
+show_behind_parent = true
+position = Vector2(12.5879, 3.14697)
+texture = ExtResource("5_r7pn3")
+emission_shape = 1
+emission_sphere_radius = 35.37
+direction = Vector2(0, -1)
+spread = 87.43
+gravity = Vector2(0, 0)
+initial_velocity_min = 188.57
+initial_velocity_max = 188.57
+scale_amount_min = 0.1
+scale_amount_max = 0.1
+scale_amount_curve = SubResource("Curve_r7pn3")
+color = Color(0, 0, 0, 1)
+
+[node name="WhitchHat" type="Sprite2D" parent="Shape/SpriteMod/Lizard"]
+visible = false
+position = Vector2(-11, -74)
+scale = Vector2(0.289971, 0.289971)
+texture = ExtResource("6_00jtg")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Shape/SpriteMod/Lizard/WhitchHat"]
+show_behind_parent = true
+position = Vector2(-34.4862, -3.44865)
+rotation = -0.68576
+texture = ExtResource("5_r7pn3")
+lifetime = 0.7
+emission_shape = 1
+emission_sphere_radius = 71.94
+direction = Vector2(0, -1)
+spread = 22.63
+gravity = Vector2(0, 0)
+initial_velocity_min = 715.43
+initial_velocity_max = 715.43
+scale_amount_min = 0.1
+scale_amount_max = 0.1
+scale_amount_curve = SubResource("Curve_b8hi5")
+color = Color(0.776835, 0.000539064, 0.790869, 1)
+
+[node name="HornsHat" type="Sprite2D" parent="Shape/SpriteMod/Lizard"]
+visible = false
+position = Vector2(19, -91)
+rotation = 0.557642
+scale = Vector2(0.315078, 0.315078)
+texture = ExtResource("5_ka5li")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Shape/SpriteMod/Lizard/HornsHat"]
+show_behind_parent = true
+position = Vector2(16.1867, -40.019)
+rotation = 1.4417
+amount = 50
+texture = ExtResource("5_r7pn3")
+lifetime = 5.0
+emission_shape = 3
+emission_rect_extents = Vector2(150, 250)
+direction = Vector2(0, -1)
+spread = 87.43
+gravity = Vector2(0, 0)
+scale_amount_min = 0.02
+scale_amount_max = 0.05
+scale_amount_curve = SubResource("Curve_2uvqg")
+color_ramp = SubResource("Gradient_1s1yo")
+
+[node name="AcagamicsHat" type="Sprite2D" parent="Shape/SpriteMod/Lizard"]
+visible = false
+z_index = 2
+position = Vector2(-10, -74)
+rotation = 0.0838765
+scale = Vector2(0.290329, 0.28903)
+texture = ExtResource("4_4ddmg")
+
+[node name="Line2D" type="Line2D" parent="Shape/SpriteMod/Lizard/AcagamicsHat" node_paths=PackedStringArray("nodes")]
+show_behind_parent = true
+scale = Vector2(3.44437, 3.45985)
+points = PackedVector2Array(-147.237, 3.34703, -144.808, 32.2451, -141.298, 62.0558, -121.677, 92.5191)
+default_color = Color(1, 0.564706, 0.00392157, 1)
+gradient = SubResource("Gradient_2uvqg")
+joint_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("9_b8hi5")
+nodes = [NodePath("../RigidBody2D"), NodePath("../../../../../RigidBody2D2"), NodePath("../../../../../RigidBody2D3"), NodePath("../../../../../RigidBody2D4")]
+
+[node name="Sprite2D" type="Sprite2D" parent="Shape/SpriteMod/Lizard/AcagamicsHat"]
+z_index = 1
+position = Vector2(25.3935, 303.396)
+rotation = -0.0842517
+scale = Vector2(1.54265, 1.54949)
+skew = 0.000748754
+texture = ExtResource("31_2uvqg")
+offset = Vector2(0, 13.075)
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Shape/SpriteMod/Lizard/AcagamicsHat"]
+position = Vector2(-4.29795, -10.0532)
+rotation = -0.0842519
+scale = Vector2(3.44447, 3.45974)
+skew = -0.000512004
+collision_layer = 16
+physics_material_override = SubResource("PhysicsMaterial_2uvqg")
+freeze = true
+freeze_mode = 1
+linear_damp = 1.731
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shape/SpriteMod/Lizard/AcagamicsHat/RigidBody2D"]
+shape = SubResource("CircleShape2D_b8hi5")
+debug_color = Color(0.514195, 0.576603, 0, 0.42)
 
 [node name="Wings" type="AnimatedSprite2D" parent="Shape/SpriteMod/Lizard"]
 position = Vector2(-59, -17)
@@ -278,6 +479,7 @@ flip_h = true
 position = Vector2(15, -41)
 sprite_frames = SubResource("SpriteFrames_51egm")
 autoplay = "default"
+frame_progress = 0.676279
 flip_h = true
 
 [node name="Hitbox" type="Area2D" parent="Shape"]
@@ -286,20 +488,20 @@ collision_layer = 8
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shape/Hitbox"]
-shape = SubResource("CircleShape2D_raog1")
+shape = SubResource("CapsuleShape2D_2uvqg")
 
 [node name="HurtboxPoint" type="Marker2D" parent="Shape"]
-position = Vector2(74, 0)
+position = Vector2(45, -39)
 
 [node name="WalkParticles" type="CPUParticles2D" parent="Shape"]
 z_index = -1
 position = Vector2(-16, 80)
 emitting = false
 amount = 6
+texture = ExtResource("4_qsx8m")
 lifetime = 0.36
 randomness = 0.26
 lifetime_randomness = 0.63
-texture = ExtResource("4_qsx8m")
 direction = Vector2(-5, 0)
 spread = 7.66
 gravity = Vector2(0, -600)
@@ -318,12 +520,12 @@ z_index = -1
 position = Vector2(0, 73)
 emitting = false
 amount = 4
+texture = ExtResource("5_jur31")
 lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
 randomness = 0.39
 lifetime_randomness = 0.55
-texture = ExtResource("5_jur31")
 spread = 180.0
 gravity = Vector2(0, -100)
 initial_velocity_min = 400.0
@@ -350,9 +552,9 @@ rotation = -0.610865
 [node name="Breath" type="CPUParticles2D" parent="Shape"]
 z_index = -1
 position = Vector2(20, -30)
+texture = ExtResource("6_fmi01")
 lifetime = 0.8
 lifetime_randomness = 0.22
-texture = ExtResource("6_fmi01")
 gravity = Vector2(0, -400)
 initial_velocity_min = 106.38
 initial_velocity_max = 202.13
@@ -394,10 +596,11 @@ texture = ExtResource("7_1a56r")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Shape")
-autoplay = "idle"
 libraries = {
-"": SubResource("AnimationLibrary_qcapg")
+&"": SubResource("AnimationLibrary_qcapg")
 }
+autoplay = "idle"
+blend_times = [&"attack", &"hover", 0.2, &"attack", &"idle", 0.2, &"hover", &"attack", 0.2, &"hover", &"idle", 0.2, &"idle", &"attack", 0.2, &"idle", &"hover", 0.2]
 
 [node name="SwordAttack" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_n0y1f")
@@ -408,9 +611,6 @@ stream = ExtResource("9_78y6v")
 script = ExtResource("20_nf2gy")
 
 [node name="Footsteps" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("22_g66kh")
-script = ExtResource("23_x6ygt")
-sounds = Array[AudioStream]([ExtResource("22_g66kh"), ExtResource("24_s1ayy")])
 
 [node name="LandSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_tnci7")
@@ -434,5 +634,61 @@ script = ExtResource("20_nf2gy")
 [node name="Kill" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("15_xdkb4")
 script = ExtResource("20_nf2gy")
+
+[node name="RigidBody2D2" type="RigidBody2D" parent="."]
+position = Vector2(-13, -54)
+collision_layer = 16
+collision_mask = 16
+physics_material_override = SubResource("PhysicsMaterial_2uvqg")
+linear_damp = 1.731
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D2"]
+shape = SubResource("CircleShape2D_2uvqg")
+debug_color = Color(2.45467e-06, 0.631262, 0.464013, 0.42)
+
+[node name="PinJoint2D" type="PinJoint2D" parent="RigidBody2D2"]
+position = Vector2(7.62939e-06, -31)
+node_a = NodePath("../../Shape/SpriteMod/Lizard/AcagamicsHat/RigidBody2D")
+node_b = NodePath("..")
+softness = 1.0
+
+[node name="RigidBody2D3" type="RigidBody2D" parent="."]
+position = Vector2(-13, -25)
+collision_layer = 16
+collision_mask = 16
+physics_material_override = SubResource("PhysicsMaterial_2uvqg")
+linear_damp = 1.731
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D3"]
+shape = SubResource("CircleShape2D_2uvqg")
+debug_color = Color(2.45467e-06, 0.631262, 0.464013, 0.42)
+
+[node name="PinJoint2D" type="PinJoint2D" parent="RigidBody2D3"]
+position = Vector2(-5.72205e-06, -29)
+node_a = NodePath("../../RigidBody2D2")
+node_b = NodePath("..")
+softness = 1.0
+
+[node name="RigidBody2D4" type="RigidBody2D" parent="."]
+position = Vector2(-12, 6)
+collision_layer = 16
+collision_mask = 16
+physics_material_override = SubResource("PhysicsMaterial_2uvqg")
+linear_damp = 1.731
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D4"]
+shape = SubResource("CircleShape2D_2uvqg")
+debug_color = Color(2.45467e-06, 0.631262, 0.464013, 0.42)
+
+[node name="PinJoint2D" type="PinJoint2D" parent="RigidBody2D4"]
+position = Vector2(-1, -31)
+scale = Vector2(0.290329, 0.28903)
+node_a = NodePath("../../RigidBody2D3")
+node_b = NodePath("..")
+softness = 1.0
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="RigidBody2D4"]
+scale = Vector2(0.447862, 0.447862)
+remote_path = NodePath("../../Shape/SpriteMod/Lizard/AcagamicsHat/Sprite2D")
 
 [connection signal="area_entered" from="Shape/Hitbox" to="." method="hitbox_entered"]

@@ -14,7 +14,7 @@ _data = [Vector2(0, 0.181818), 0.0, 0.0, 0, 0, Vector2(1, 0.527273), 0.0, 0.0, 0
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_dqx7a"]
-max_value = 200.0
+_limits = [0.0, 200.0, 0.0, 1.0]
 _data = [Vector2(0.010989, 200), 0.0, 0.0, 0, 0, Vector2(1, 3.63637), 0.0, 0.0, 0, 0]
 point_count = 2
 
@@ -24,11 +24,11 @@ point_count = 2
 material = SubResource("CanvasItemMaterial_q4xh6")
 position = Vector2(502, 475)
 amount = 19
+texture = ExtResource("1_3iufc")
 lifetime = 4.0
 speed_scale = 0.3
 randomness = 0.53
 lifetime_randomness = 0.52
-texture = ExtResource("1_3iufc")
 direction = Vector2(5, 5)
 spread = 180.0
 gravity = Vector2(0, -100)
